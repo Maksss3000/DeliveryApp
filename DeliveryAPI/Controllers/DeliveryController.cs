@@ -2,18 +2,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DeliveryAPI.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class DeliveryController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<DeliveryController> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public DeliveryController(ILogger<DeliveryController> logger)
         {
             _logger = logger;
         }
