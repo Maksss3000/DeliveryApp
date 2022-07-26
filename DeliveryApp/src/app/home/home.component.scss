@@ -1,0 +1,82 @@
+.delivery,
+.steps {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 1em;
+  /* font-size: 1em; */
+}
+
+.delivery_fast .fast {
+  color: #ff7e00;
+  font-size: 5em;
+}
+
+.del {
+  line-height: 0;
+  font-size: 2em;
+  padding-left: 6em;
+}
+
+.arrow {
+  max-height: 4em;
+  position: absolute;
+  left: 27em;
+  top: 6em;
+}
+
+.food_container {
+  flex: 0 1 30%;
+}
+
+.food {
+  text-align: center;
+}
+
+.food img {
+  max-height: 20em;
+}
+
+.delivery_fast {
+  flex: 0 1 50%;
+  text-align: center;
+}
+
+.delivery_fast span {
+  font-size: 2em;
+}
+
+.steps {
+  padding-top: 4em;
+  justify-content: space-between;
+}
+
+.steps_desc {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.step_container {
+  flex: 0 1 30%;
+}
+
+.step_img {
+  padding-top: 2em;
+}
+
+.btn {
+  /* font-size: 1em; */
+  display: inline-block;
+  border-radius: 50px;
+  background-color: #ff7e00;
+  color: whitesmoke;
+  text-decoration: none;
+  padding: 10px;
+  margin-top: 1em;
+  transition: color 0.3s, background-color 0.3s;
+  border: 1px solid #ff7e00;
+}
+
+.btn:hover {
+  background-color: white;
+  color: #ff7e00;
+}

@@ -7,20 +7,14 @@ import { environment } from '../environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public forecasts?: WeatherForecast[];
-
+  //public forecasts?: WeatherForecast[];
+  /*
   constructor(http: HttpClient) {
     http.get<WeatherForecast[]>(environment.baseUrl+"/delivery").subscribe(result => {
       this.forecasts = result;
     }, error => console.error(error));
   }
-
+  */
   title = 'DeliveryApp';
 }
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
-}
