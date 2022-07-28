@@ -1,14 +1,16 @@
+@import '../../sass/_mixins.scss';
+
 .delivery,
 .steps {
-  display: flex;
-  justify-content: space-around;
+  @include flex(space-around);
   padding-top: 1em;
-  /* font-size: 1em; */
 }
 
-.delivery_fast .fast {
-  color: #ff7e00;
-  font-size: 5em;
+.delivery_fast {
+  .fast {
+    color: #ff7e00;
+    font-size: 5em;
+  }
 }
 
 .del {
@@ -32,8 +34,10 @@
   text-align: center;
 }
 
-.food img {
-  max-height: 20em;
+.food {
+  img {
+    max-height: 20em;
+  }
 }
 
 .delivery_fast {
@@ -41,8 +45,10 @@
   text-align: center;
 }
 
-.delivery_fast span {
-  font-size: 2em;
+.delivery_fast {
+  span {
+    font-size: 2em;
+  }
 }
 
 .steps {
@@ -63,6 +69,18 @@
   padding-top: 2em;
 }
 
+.step_img {
+  img {
+    transition: transform 1s;
+  }
+
+  &:hover {
+    img:not(.no_hover) {
+      transform: scale(1.1);
+    }
+  }
+}
+
 .btn {
   /* font-size: 1em; */
   display: inline-block;
@@ -74,9 +92,9 @@
   margin-top: 1em;
   transition: color 0.3s, background-color 0.3s;
   border: 1px solid #ff7e00;
-}
 
-.btn:hover {
-  background-color: white;
-  color: #ff7e00;
+  &:hover {
+    background-color: white;
+    color: #ff7e00;
+  }
 }

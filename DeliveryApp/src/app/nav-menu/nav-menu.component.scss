@@ -1,14 +1,14 @@
+@import '../../sass/_mixins.scss';
+
 header {
   font-family: "Marko One", Georgia, Times, serif;
   /* border-bottom: 1px solid white; */
   background-color: #e5e5e5;
 }
 
-
 .nav_container {
   min-height: 3em;
-  display: flex;
-  align-items: center;
+  @include flex();
   list-style-type: none;
   margin-top: 0;
 }
@@ -18,9 +18,13 @@ header {
   font-size: 1.2em;
 }
 
-.nav_item:hover > .nav_link {
-  color: #ff7e00;
-  border-bottom: solid 1px #ff7e00;
+.nav_item {
+  &:hover {
+    .nav_link {
+      color: #ff7e00;
+      border-bottom: solid 1px #ff7e00;
+    }
+  }
 }
 
 a.nav_link {
@@ -28,14 +32,22 @@ a.nav_link {
   transition: color ease-out 0.3s;
 }
 
-.nav_item div img {
-  max-height: 4em;
-  vertical-align: middle;
-  border-radius: 50%;
+.nav_item {
+  div {
+    img {
+      max-height: 4em;
+      vertical-align: middle;
+      border-radius: 50%;
+    }
+  }
 }
 
-.nav_item div span {
-  margin-left: 1em;
+.nav_item {
+  div {
+    span {
+      margin-left: 1em;
+    }
+  }
 }
 
 .nav_link {
@@ -43,14 +55,8 @@ a.nav_link {
   color: black;
 }
 
-.nav_item:first-child {
-  margin-right: auto;
+.nav_item {
+  &:first-child {
+    margin-right: auto;
+  }
 }
-
-.arrow {
-  max-height: 4em;
-  position: absolute;
-  left: 27em;
-  top: 6em;
-}
-
