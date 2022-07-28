@@ -1,0 +1,41 @@
+@import '../../sass/_mixins.scss';
+
+.featured_rest {
+  text-align: center;
+  font-size: 2em;
+}
+
+.restaurants {
+  padding-top: 1em;
+  @include flex(space-around);
+  flex-wrap: wrap;
+}
+
+.restaurant_container {
+  padding-top: 1em;
+  flex: 0 1 30%;
+  text-align: left;
+  font-size: 1.5em;
+}
+
+.restaurant_container span {
+  padding-left: 25%;
+}
+
+.img_wrapper img {
+  border-radius: 50px;
+  height: 10em;
+}
+
+.stars {
+  line-height: 0;
+  display: inline-block;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.stars li {
+  display: inline-block;
+  color: orange;
+  cursor: pointer;
+}

@@ -7,12 +7,14 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 
 import { AppRoutingModule } from './app-routing.module';
+import { RestaurantsComponent } from './restaurants/restaurants.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    HomeComponent
+    HomeComponent,
+    RestaurantsComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule
