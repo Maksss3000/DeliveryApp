@@ -18,6 +18,7 @@ namespace DeliveryAPI.Controllers
             _logger = logger;
         }
 
+        /*
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
@@ -29,5 +30,6 @@ namespace DeliveryAPI.Controllers
             })
             .ToArray();
         }
+        */
     }
 }
