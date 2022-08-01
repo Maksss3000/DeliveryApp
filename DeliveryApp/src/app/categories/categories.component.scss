@@ -1,0 +1,42 @@
+@import '../../sass/_mixins.scss';
+
+.title {
+  @include title(2em);
+  padding-top: 0.5em;
+}
+
+.categories_container {
+  @include flex(space-evenly);
+  padding-top: 2em;
+}
+
+.cat_container {
+  flex: 0 1 34%;
+  padding-top: 1em;
+  padding-top: 1em;
+
+  .bg_img {
+    @include flex();
+    position: relative;
+    border-radius: 50px;
+    height: 12em;
+
+    &::before {
+      content: "";
+      background: var(--img) center center/cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      border-radius: 50px;
+      opacity: 0.6;
+    }
+
+    div {
+      @include title();
+      position: relative;
+      color: #ffff;
+    }
+  }
+}

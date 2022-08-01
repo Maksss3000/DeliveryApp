@@ -1,10 +1,10 @@
 @import '../../sass/_mixins.scss';
 
+
 .featured_rest {
   text-align: center;
   font-size: 2em;
 }
-
 .restaurants {
   padding-top: 1em;
   @include flex(space-around);

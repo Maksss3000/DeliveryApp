@@ -1,6 +1,17 @@
+@mixin imgBaseRule {
+  max-width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 
 @mixin flex($justCont: center, $alignItems: center) {
   display: flex;
   justify-content: $justCont;
   align-items: $alignItems;
+  flex-wrap: wrap;
+}
+
+@mixin title($fontSize: 2em) {
+  text-align: center;
+  font-size: $fontSize;
 }

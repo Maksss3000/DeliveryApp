@@ -1,0 +1,34 @@
+<section class="category_section">
+  <div class="container">
+    <div class="title">Top Categories</div>
+    <div class="categories_container">
+   
+      <ng-container *ngFor="let _ of [].constructor(3) index">
+        <div class="cat_container">
+          <div class="bg_img" [style.--img]="myImg">
+            <div>Burgers</div>
+          </div>
+        </div>
+      </ng-container>
+      <!--
+        
+      
+      <div class="cat_container">
+        <div class="bg_img">
+          <div>Burgers</div>
+        </div>
+      </div>
+      <div class="cat_container">
+        <div class="bg_img">
+          <div>Snacks</div>
+        </div>
+      </div>
+      <div class="cat_container">
+        <div class="bg_img">
+          <div>Burgers</div>
+        </div>
+      </div>
+        -->
+    </div>
+  </div>
+</section>

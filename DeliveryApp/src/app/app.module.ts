@@ -8,13 +8,15 @@ import { HomeComponent } from './home/home.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    RestaurantsComponent
+    RestaurantsComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule
