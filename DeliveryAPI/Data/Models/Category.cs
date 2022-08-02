@@ -17,7 +17,7 @@ namespace DeliveryAPI.Data.Models
 
         public string Img { get; set; } = null!;
 
-      //  [JsonIgnore]
-      //  public ICollection<Restaurant>? Restaurants { get; set; } = null!;
+        [JsonIgnore]
+        public ICollection<Restaurant>? Restaurants { get; set; } = null!;
     }
 }

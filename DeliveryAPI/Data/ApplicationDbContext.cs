@@ -10,5 +10,9 @@ namespace DeliveryAPI.Data
         public ApplicationDbContext(DbContextOptions options) : base(options) { }
 
         public DbSet<Category> Categories => Set<Category>();
+
+        public DbSet<Product> Products => Set<Product>();
+
+        public DbSet<Restaurant> Restaurants => Set<Restaurant>();
     }
 }

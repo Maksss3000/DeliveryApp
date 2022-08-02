@@ -21,7 +21,7 @@ namespace DeliveryAPI.Controllers
 
 
         [HttpGet]
-        public async Task<ActionResult> CreateDefaultCategories()
+        public async Task<ActionResult> SeedData()
         {
             //Prevent non-development environment from running this method.
             if (!_env.IsDevelopment())
@@ -39,6 +39,15 @@ namespace DeliveryAPI.Controllers
                 Category other = new Category { Img = "other.jpg", Name = "Other" };
 
                 await _context.Categories!.AddRangeAsync(pizza, burger, sandwich, hotDog,other);
+
+                Restaurant mcD = new Restaurant { Name = "MDonalds", Category = burger, Image = "mc.jpg" };
+                Restaurant pizzaStar = new Restaurant { Name = "PizzaStar", Category = pizza, Image = "pizStar.jpg" };
+                await _context.Restaurants.AddRangeAsync(mcD, pizzaStar);
+
+                Product cheezeBurger = new Product { Name = "CheezeBurger", Description = "Very Tasty Burger , with Cheeze", Price = 65, Image = "cBurger.jpg", Restaurant = mcD };
+                Product extraHotPizza= new Product { Name = "HotPizza", Description = "Very Hot Pizza , with Cheeze", Price = 55, Image = "hotPizza.jpg", Restaurant =pizzaStar };
+                await _context.Products.AddRangeAsync(cheezeBurger, extraHotPizza);
+
                 await _context.SaveChangesAsync();
             }
             return Ok(_context.Categories);
