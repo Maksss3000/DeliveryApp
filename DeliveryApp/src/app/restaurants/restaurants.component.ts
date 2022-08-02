@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
+import { Restaurant } from './restaurant';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-restaurants',
@@ -7,10 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RestaurantsComponent implements OnInit {
 
+  public restaurants!: Restaurant[];
+  public env = environment;
+  public raiting: number = 0;
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get<Restaurant[]>(environment.baseUrl + '/Delivery/restaurants').subscribe(result => {
+      result.map(res => {
+        res.stars = Math.floor(res.raiting);
+        res.image = this.env.imgUrl+'/'+ res.image;
+      })
+      this.restaurants = result;
+    }, error => console.error(error));
   }
+
+
+
 
 }

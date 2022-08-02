@@ -1,6 +1,9 @@
 @import '../../sass/_mixins.scss';
 
-
+.title {
+  @include title(2em);
+  padding-top: 0.5em;
+}
 .featured_rest {
   text-align: center;
   font-size: 2em;

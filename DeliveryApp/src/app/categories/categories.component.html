@@ -6,8 +6,7 @@
       <div *ngIf="!categories" class="title">Loading...</div>
 
       <div *ngFor="let category of categories" class="cat_container">
-        
-          <div class="bg_img" [style.--img]="'url('+env.imgUrl+'/'+category.img+')'">
+          <div class="bg_img" [style.--img]="'url('+category.img+')'">
             <div>{{category.name}}</div>
           </div>
       </div>

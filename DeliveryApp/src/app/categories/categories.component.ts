@@ -23,7 +23,10 @@ export class CategoriesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.http.get<Category[]>(environment.baseUrl + '/Delivery').subscribe(result => {
+    this.http.get<Category[]>(environment.baseUrl + '/Delivery/categories').subscribe(result => {
+      result.map(res => {
+        res.img = `${this.env.imgUrl}/${res.img}`;
+      })
       this.categories = result;
     }, error => console.error(error));
   }

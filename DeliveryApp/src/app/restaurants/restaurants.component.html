@@ -2,46 +2,65 @@
   <div class="container">
     <div class="featured_rest">FEATURED RESTAURANTS</div>
     <div class="restaurants">
-      <ng-container *ngFor="let _ of [].constructor(3)">
-        <div class="restaurant_container">
-          <div class="img_wrapper">
-            <a href="#">
-              <img src="../../assets/logos/burger.jpg" alt="restaurant" />
-            </a>
-          </div>
-          <div>Mc-Donalds <span>Category</span></div>
+      <div *ngIf="!restaurants" class="title">Loading...</div>
 
-          <ul class="stars">
-            <li>&#10029;</li>
-            <li>&#10029;</li>
-            <li>&#10029;</li>
-            <li>&#10029;</li>
-            <li>&#10029;</li>
-          </ul>
-          <small>Votes()</small>
+      <div *ngFor="let rest of restaurants" class="restaurant_container">
+
+        <div class="img_wrapper">
+          <a href="#">
+            <img src="{{rest.image}}" alt="restaurant" />
+          </a>
         </div>
+        <div>{{rest.name}}<span>Raiting:{{rest.raiting}}</span></div>
+        <ul class="stars">
+          <li *ngFor="let item of [].constructor(rest.stars);">&#10029;</li>
+        </ul>
+        <small>Votes({{rest.votes}})</small>
+      </div>
+      <!--
+  <ng-container *ngFor="let _ of [].constructor(3)">
+    <div class="restaurant_container">
+      <div class="img_wrapper">
+        <a href="#">
+          <img src="../../assets/logos/burger.jpg" alt="restaurant" />
+        </a>
+      </div>
+      <div>Mc-Donalds <span>Category</span></div>
 
-      </ng-container>
-      <ng-container *ngFor="let _ of [].constructor(3)">
-        <div class="restaurant_container">
-          <div class="img_wrapper">
-            <a href="#">   <img src="../../assets/logos/restaurant.jpg" alt="restaurant" /></a>
-          </div>
-          <div>Mc-Donalds <span>Categorys</span></div>
+      <ul class="stars">
+        <li>&#10029;</li>
+        <li>&#10029;</li>
+        <li>&#10029;</li>
+        <li>&#10029;</li>
+        <li>&#10029;</li>
+      </ul>
+      <small>Votes()</small>
+    </div>
 
-          <ul class="stars">
-            <li>&#10029;</li>
-            <li>&#10029;</li>
-            <li>&#10029;</li>
-            <li>&#10029;</li>
-            <li>&#10029;</li>
-          </ul>
-          <small>Votes()</small>
+  </ng-container>
+  <ng-container *ngFor="let _ of [].constructor(3)">
+    <div class="restaurant_container">
+      <div class="img_wrapper">
+        <a href="#">   <img src="../../assets/logos/restaurant.jpg" alt="restaurant" /></a>
+      </div>
+      <div>Mc-Donalds <span>Categorys</span></div>
 
-        </div>
+      <ul class="stars">
+        <li>&#10029;</li>
+        <li>&#10029;</li>
+        <li>&#10029;</li>
+        <li>&#10029;</li>
+        <li>&#10029;</li>
+      </ul>
+      <small>Votes()</small>
 
-      </ng-container>
-    
+    </div>
+
+  </ng-container>
+  -->
+
+
+
     </div>
   </div>
 </section>

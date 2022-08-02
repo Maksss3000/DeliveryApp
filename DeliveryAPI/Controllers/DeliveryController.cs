@@ -22,13 +22,21 @@ namespace DeliveryAPI.Controllers
             _context = context;
         }
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCities()
+        [Route("categories")]
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
             return await _context.Categories.AsNoTracking().Select(c => new Category
             {
                 Name=c.Name,
                 Img= c.Img,
             }).ToListAsync();
+        }
+
+        [HttpGet]
+        [Route("restaurants")]
+        public async Task<ActionResult<IEnumerable<Restaurant>>> GetRestaurants()
+        {
+            return await _context.Restaurants.AsNoTracking().ToListAsync();
         }
     }
 }
