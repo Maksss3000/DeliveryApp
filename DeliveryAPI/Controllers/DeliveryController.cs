@@ -1,4 +1,7 @@
+using DeliveryAPI.Data;
+using DeliveryAPI.Data.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace DeliveryAPI.Controllers
 {
@@ -12,12 +15,21 @@ namespace DeliveryAPI.Controllers
     };
 
         private readonly ILogger<DeliveryController> _logger;
-
-        public DeliveryController(ILogger<DeliveryController> logger)
+        private readonly ApplicationDbContext _context;
+        public DeliveryController(ILogger<DeliveryController> logger,ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
-
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Category>>> GetCities()
+        {
+            return await _context.Categories.AsNoTracking().Select(c => new Category
+            {
+                Name=c.Name,
+                Img= c.Img,
+            }).ToListAsync();
+        }
         /*
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()

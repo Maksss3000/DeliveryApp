@@ -2,33 +2,34 @@
   <div class="container">
     <div class="title">Top Categories</div>
     <div class="categories_container">
-   
-      <ng-container *ngFor="let _ of [].constructor(3) index">
-        <div class="cat_container">
-          <div class="bg_img" [style.--img]="myImg">
-            <div>Burgers</div>
-          </div>
+
+      <div *ngIf="!categories" class="title">Loading...</div>
+
+      <div *ngFor="let category of categories" class="cat_container">
+        <div class="bg_img" [style.--img]="'url('+env.imgUrl+'/'+category.img+')'">
+          <div>{{category.name}}</div>
         </div>
-      </ng-container>
-      <!--
-        
+      </div>
       
-      <div class="cat_container">
-        <div class="bg_img">
-          <div>Burgers</div>
-        </div>
-      </div>
-      <div class="cat_container">
-        <div class="bg_img">
-          <div>Snacks</div>
-        </div>
-      </div>
-      <div class="cat_container">
-        <div class="bg_img">
-          <div>Burgers</div>
-        </div>
-      </div>
-        -->
+      <!--
+
+
+  <div class="cat_container">
+    <div class="bg_img">
+      <div>Burgers</div>
+    </div>
+  </div>
+  <div class="cat_container">
+    <div class="bg_img">
+      <div>Snacks</div>
+    </div>
+  </div>
+  <div class="cat_container">
+    <div class="bg_img">
+      <div>Burgers</div>
+    </div>
+  </div>
+    -->
     </div>
   </div>
 </section>

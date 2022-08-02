@@ -29,6 +29,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+//To get Static files
+//As example from wwwroot folder (images)
+ app.UseStaticFiles();
+
 app.UseAuthorization();
 
 app.MapControllers();

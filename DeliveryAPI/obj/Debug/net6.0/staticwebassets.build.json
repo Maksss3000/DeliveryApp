@@ -1,11 +1,105 @@
 {
   "Version": 1,
-  "Hash": "MdtVeGlXd7w9eGgEjYYJjMd+TqyM6tveY1Gmx68mwjM=",
+  "Hash": "PNIPlYY28rmjFeds7kkUtV/DFJuKEKxqbHw48ehtfY4=",
   "Source": "DeliveryAPI",
   "BasePath": "_content/DeliveryAPI",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "DeliveryAPI\\wwwroot",
+      "Source": "DeliveryAPI",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\burger.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/burger.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\burger.jpg"
+    },
+    {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\hotDog.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/hotDog.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\hotDog.jpg"
+    },
+    {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\other.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/other.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\other.jpg"
+    },
+    {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\pizza.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/pizza.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\pizza.jpg"
+    },
+    {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\sandwich.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/sandwich.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\sandwich.jpg"
+    }
+  ]
 }

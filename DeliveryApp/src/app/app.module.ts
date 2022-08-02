@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { CategoriesComponent } from './categories/categories.component';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,7 @@ import { CategoriesComponent } from './categories/categories.component';
     CategoriesComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, AppRoutingModule
+    BrowserModule, HttpClientModule, AppRoutingModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
