@@ -2,6 +2,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { Restaurant } from './restaurant';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-restaurants',
@@ -14,19 +15,57 @@ export class RestaurantsComponent implements OnInit {
   public env = environment;
   public raiting: number = 0;
 
-  constructor(private http: HttpClient) { }
+  public id?: number;
+
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.http.get<Restaurant[]>(environment.baseUrl + '/Delivery/restaurants').subscribe(result => {
-      result.map(res => {
-        res.stars = Math.floor(res.raiting);
-        res.image = this.env.imgUrl+'/'+ res.image;
-      })
-      this.restaurants = result;
-    }, error => console.error(error));
+
+    this.loadRestaurants();
   }
 
 
+
+
+
+
+
+
+  loadRestaurants() {
+    //retrieve the ID from the 'id' parameter
+    //that can be  passed by url in categories.component.html(a link)
+
+    var catId = this.activatedRoute.snapshot.paramMap.get('id');
+    this.id = catId ? +catId : 0;
+
+      
+      //We will get all Restaurants if we didn`t passed any id(category Id) or
+      //Restaurant of Specific Category.
+    
+      this.http.get<Restaurant[]>(environment.baseUrl + '/Delivery/restaurants/'+this.id).subscribe(result => {
+        result.map(res => {
+          res.stars = Math.floor(res.raiting);
+          res.image = this.env.imgUrl + '/' + res.image;
+        })
+        this.restaurants = result;
+      }, error => console.error(error));
+    
+
+    //Getting All of Existed Restaurants
+    /*
+    else {
+      this.http.get<Restaurant[]>(environment.baseUrl + '/Delivery/restaurants/').subscribe(result => {
+        result.map(res => {
+          res.stars = Math.floor(res.raiting);
+          res.image = this.env.imgUrl + '/' + res.image;
+        })
+        this.restaurants = result;
+      }, error => console.error(error));
+    }
+    */
+   
+
+  }
 
 
 }

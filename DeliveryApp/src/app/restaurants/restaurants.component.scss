@@ -42,3 +42,7 @@
   color: orange;
   cursor: pointer;
 }
+
+.no_content{
+    @include title(1.5em);
+}

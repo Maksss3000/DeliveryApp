@@ -1,0 +1,28 @@
+<section class="product_section">
+  <div class="container">
+    <div class="main_title">McDonalds Best Products</div>
+    <div class="products_wrapper">
+      <ng-container *ngFor="let _ of [].constructor(6)">
+        <div class="product">
+          <div class="img_wrapper">
+            <img src="../../assets/logos/burger.jpg" alt="burger" />
+          </div>
+          <div class="prod_desc">
+            <span>Our Best Hamburger</span>
+            <p>
+              Some description text. Description sd;sdsdsdsdsdssddsds,
+              dsdsdsdsdssd
+            </p>
+            <p class="price">
+              Price <span> $10 </span>
+
+              <button class="btn_add">
+                <img src="../../assets/logos/plus.png" alt="plus" />
+              </button>
+            </p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>

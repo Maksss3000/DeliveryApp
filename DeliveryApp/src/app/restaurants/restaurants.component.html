@@ -4,10 +4,22 @@
     <div class="restaurants">
       <div *ngIf="!restaurants" class="title">Loading...</div>
 
+      <div *ngIf="restaurants.length == 0">
+      
+        <div class="no_content">
+          <div>We still don`t have Restaurants from this Category</div>
+          <div class="img_wrapper">
+            <img src="../../assets/logos/noContent.png" alt="noContent" />
+          </div>
+        </div>
+
+      </div>
+
+
       <div *ngFor="let rest of restaurants" class="restaurant_container">
 
         <div class="img_wrapper">
-          <a href="#">
+          <a [routerLink]="['/products']">
             <img src="{{rest.image}}" alt="restaurant" />
           </a>
         </div>

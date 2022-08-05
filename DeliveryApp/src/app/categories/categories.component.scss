@@ -1,5 +1,20 @@
 @import '../../sass/_mixins.scss';
 
+.category_section{
+    padding-bottom:2em;
+}
+a {
+  text-decoration: none;
+
+  &:after {
+    display: block;
+    content: '';
+    border-bottom: solid 1px #000;
+    transform: scaleX(0);
+    transition: transform 0.5s ease-in-out;
+  }
+}
+
 .title {
   @include title(2em);
   padding-top: 0.5em;
@@ -16,10 +31,21 @@
   padding-top: 1em;
 
   .bg_img {
+
     @include flex();
     position: relative;
     border-radius: 50px;
     height: 12em;
+    transition: transform ease-out 1s;
+
+
+    &:hover {
+      transform: scale(1.1);
+
+      a:after {
+        transform: scaleX(1);
+      }
+    }
 
     &::before {
       content: "";
@@ -30,7 +56,7 @@
       bottom: 0px;
       left: 0px;
       border-radius: 50px;
-      border:1px solid 	#000000;
+      border: 1px solid #000000;
       opacity: 0.6;
     }
 

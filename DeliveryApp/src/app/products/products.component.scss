@@ -1,0 +1,64 @@
+@import "../../sass/_mixins.scss";
+
+.product_section {
+  padding-bottom: 2em;
+}
+.product_section {
+  padding-bottom: 2em;
+}
+
+.products_wrapper {
+  @include flex(space-between, baseline);
+}
+
+.main_title {
+  @include title(2em);
+  margin-top: 1em;
+}
+
+.product {
+  flex: 0 1 49%;
+  @include flex(space-around, flex-start);
+  border: 1px solid rgb(209, 212, 199);
+  border-radius: 25px;
+  margin-top: 2em;
+  padding: 1em;
+
+  .img_wrapper {
+    flex: 0 1 45%;
+  }
+
+  img {
+    border-radius: 25px;
+  }
+
+  .prod_desc {
+    flex: 0 1 45%;
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+  .price {
+    font-weight: bold;
+    font-size: 1.2em;
+    display: flex;
+
+    span {
+      color: #eea734;
+      padding-left: 10px;
+    }
+
+    .btn_add {
+      background-color: #fff;
+      border: none;
+      margin: 0 auto;
+      cursor: pointer;
+
+      img {
+        height: 2em;
+      }
+    }
+  }
+}

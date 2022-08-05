@@ -7,7 +7,7 @@
 
       <div *ngFor="let category of categories" class="cat_container">
           <div class="bg_img" [style.--img]="'url('+category.img+')'">
-            <div>{{category.name}}</div>
+            <div><a [routerLink]="['/restaurants',category.id]">{{category.name}}</a></div>
           </div>
       </div>
     </div>

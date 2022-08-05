@@ -29,14 +29,23 @@ namespace DeliveryAPI.Controllers
             {
                 Name=c.Name,
                 Img= c.Img,
+                Id=c.Id
             }).ToListAsync();
         }
 
         [HttpGet]
-        [Route("restaurants")]
-        public async Task<ActionResult<IEnumerable<Restaurant>>> GetRestaurants()
+        [Route("restaurants/{id}")]
+        public async Task<ActionResult<IEnumerable<Restaurant>>> GetRestaurants(int id=0)
         {
-            return await _context.Restaurants.AsNoTracking().ToListAsync();
+            if (id == 0)
+            {
+                return await _context.Restaurants.AsNoTracking().ToListAsync();
+            }
+            else
+            {
+                return await _context.Restaurants.AsNoTracking().Where(r => r.CategoryId == id).ToListAsync();
+            }
+          
         }
     }
 }

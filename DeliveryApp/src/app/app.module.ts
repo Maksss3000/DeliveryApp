@@ -11,6 +11,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { CategoriesComponent } from './categories/categories.component';
 
 import { FormsModule } from '@angular/forms';
+import { ProductsComponent } from './products/products.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     NavMenuComponent,
     HomeComponent,
     RestaurantsComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    ProductsComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule, FormsModule

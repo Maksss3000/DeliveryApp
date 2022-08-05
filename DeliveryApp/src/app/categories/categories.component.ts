@@ -31,6 +31,4 @@ export class CategoriesComponent implements OnInit {
     }, error => console.error(error));
   }
 
-
-
 }
