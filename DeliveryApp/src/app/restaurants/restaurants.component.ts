@@ -2,7 +2,7 @@ import { Component, HostBinding, OnInit } from '@angular/core';
 import { Restaurant } from './restaurant';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-restaurants',
@@ -23,12 +23,6 @@ export class RestaurantsComponent implements OnInit {
 
     this.loadRestaurants();
   }
-
-
-
-
-
-
 
 
   loadRestaurants() {

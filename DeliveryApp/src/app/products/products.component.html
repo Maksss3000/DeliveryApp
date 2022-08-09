@@ -1,28 +1,32 @@
 <section class="product_section">
   <div class="container">
-    <div class="main_title">McDonalds Best Products</div>
+    <div class="title" *ngIf="!products">
+      Loading..
+    </div>
+    
+    <div *ngIf="restName" class="main_title">{{restName}} Best Products</div>
     <div class="products_wrapper">
-      <ng-container *ngFor="let _ of [].constructor(6)">
+      <div *ngFor="let prod of products">
         <div class="product">
           <div class="img_wrapper">
-            <img src="../../assets/logos/burger.jpg" alt="burger" />
+            <img src="{{prod.img}}" alt="{{prod.name}}" />
           </div>
           <div class="prod_desc">
-            <span>Our Best Hamburger</span>
+            <span>{{prod.name}}</span>
             <p>
-              Some description text. Description sd;sdsdsdsdsdssddsds,
-              dsdsdsdsdssd
+             {{prod.description}}
             </p>
             <p class="price">
-              Price <span> $10 </span>
+              Price <span> $ {{prod.price}} </span>
 
               <button class="btn_add">
-                <img src="../../assets/logos/plus.png" alt="plus" />
+                <img src="../../assets/logos/plus.png" alt="add" />
               </button>
             </p>
           </div>
         </div>
-      </ng-container>
+      </div>
+       
     </div>
   </div>
 </section>

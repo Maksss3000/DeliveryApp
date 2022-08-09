@@ -10,12 +10,12 @@ const routes: Routes = [
   { path: "restaurants", component: RestaurantsComponent },
   { path: "restaurants/:id", component: RestaurantsComponent },
   { path: "categories", component: CategoriesComponent },
-  { path: "products", component: ProductsComponent }
+  { path: "products/:id", component: ProductsComponent }
   
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 

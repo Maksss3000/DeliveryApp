@@ -1,5 +1,6 @@
 using DeliveryAPI.Data;
 using DeliveryAPI.Data.Models;
+using DeliveryAPI.Data.ModelsDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -46,6 +47,22 @@ namespace DeliveryAPI.Controllers
                 return await _context.Restaurants.AsNoTracking().Where(r => r.CategoryId == id).ToListAsync();
             }
           
+        }
+
+        [HttpGet]
+        [Route("products/{id}")]
+        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProducts(int id)
+        {
+            return await _context.Products.AsNoTracking().Where(p => p.RestaurantId == id).Select(p => new ProductDTO
+            {
+               Id=p.Id,
+               Name=p.Name,
+               Description=p.Description,
+               Img=p.Image,
+               Price=p.Price,
+               RestaurantName=p.Restaurant!.Name
+
+            }).ToListAsync();
         }
     }
 }
