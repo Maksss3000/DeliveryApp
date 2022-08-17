@@ -12,6 +12,10 @@ import { CategoriesComponent } from './categories/categories.component';
 
 import { FormsModule } from '@angular/forms';
 import { ProductsComponent } from './products/products.component';
+import { RestaurantAddComponent } from './restaurant/restaurant-add.component';
+
+import { ReactiveFormsModule } from '@angular/forms';
+import { NoDataComponent } from './no-data/no-data.component';
 
 @NgModule({
   declarations: [
@@ -20,10 +24,12 @@ import { ProductsComponent } from './products/products.component';
     HomeComponent,
     RestaurantsComponent,
     CategoriesComponent,
-    ProductsComponent
+    ProductsComponent,
+    RestaurantAddComponent,
+    NoDataComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, AppRoutingModule, FormsModule
+    BrowserModule, HttpClientModule, AppRoutingModule, FormsModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

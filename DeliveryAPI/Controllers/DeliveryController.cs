@@ -17,15 +17,28 @@ namespace DeliveryAPI.Controllers
 
         private readonly ILogger<DeliveryController> _logger;
         private readonly ApplicationDbContext _context;
-        public DeliveryController(ILogger<DeliveryController> logger,ApplicationDbContext context)
+
+        private readonly IWebHostEnvironment _hostingEnvironment;
+
+        public DeliveryController(ILogger<DeliveryController> logger,ApplicationDbContext context, IWebHostEnvironment hostingEnvironment)
         {
             _logger = logger;
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
         }
         [HttpGet]
         [Route("categories")]
-        public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
+        public async Task<ActionResult<IEnumerable<Category>>> GetCategories(bool noImages=false)
         {
+            //When we need just Ids ,without Images  Categories.
+            if (noImages)
+            {
+                return await _context.Categories.AsNoTracking().Select(c => new Category
+                {
+                    Id = c.Id,
+                    Name=c.Name
+                }).ToListAsync();
+            }
             return await _context.Categories.AsNoTracking().Select(c => new Category
             {
                 Name=c.Name,
@@ -53,6 +66,13 @@ namespace DeliveryAPI.Controllers
         [Route("products/{id}")]
         public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProducts(int id)
         {
+            /*
+            if(!_context.Products.AsNoTracking().Where(p => p.RestaurantId == id).Any())
+            {
+                List<ProductDTO> emptyList = new List<ProductDTO> { new ProductDTO() };
+                
+            }
+            */
             return await _context.Products.AsNoTracking().Where(p => p.RestaurantId == id).Select(p => new ProductDTO
             {
                Id=p.Id,
@@ -63,6 +83,45 @@ namespace DeliveryAPI.Controllers
                RestaurantName=p.Restaurant!.Name
 
             }).ToListAsync();
+        }
+
+        [HttpPost]
+        [DisableRequestSizeLimit]
+        [Route("editRest")]
+        public async Task<IActionResult> EditRestaurant([FromForm] RestaurantDTO restaurant)
+        {
+            try
+            {
+                //Save Image.
+                string webRootPath = _hostingEnvironment.WebRootPath;
+                await FileSaver.SaveFileAsync(webRootPath, restaurant.ImageFile);
+
+              
+                await _context.Restaurants.AddAsync(new Restaurant
+                {
+                    Image=restaurant.Image,
+                    CategoryId=restaurant.CategoryId,
+                    Name=restaurant.Name,
+                    Owner=restaurant.Owner
+
+                });
+                await _context.SaveChangesAsync();
+                /*
+                string location = $"images/{fileName}";
+
+                var result = new
+                {
+                    message = "Upload successful",
+                    url = location
+                };
+                */
+
+                return Ok(restaurant);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Upload failed: " + ex.Message);
+            }
         }
     }
 }

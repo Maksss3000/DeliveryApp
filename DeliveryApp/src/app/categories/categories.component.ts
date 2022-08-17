@@ -25,7 +25,7 @@ export class CategoriesComponent implements OnInit {
 
     this.http.get<Category[]>(environment.baseUrl + '/Delivery/categories').subscribe(result => {
       result.map(res => {
-        res.img = `${this.env.imgUrl}/${res.img}`;
+        res.img = `${this.env.imgUrl}/Categories/${res.img}`;
       })
       this.categories = result;
     }, error => console.error(error));

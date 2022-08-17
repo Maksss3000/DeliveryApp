@@ -1,0 +1,13 @@
+@import '../../sass/_mixins.scss';
+
+.img_wrapper {
+    padding-top:2em;
+  img {
+    border-radius: 50px;
+    height: 10em;
+  }
+}
+
+.no_content {
+  @include title(1.5em);
+}

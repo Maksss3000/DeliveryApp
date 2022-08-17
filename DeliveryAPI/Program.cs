@@ -1,5 +1,6 @@
 using DeliveryAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +33,18 @@ app.UseHttpsRedirection();
 //To get Static files
 //As example from wwwroot folder (images)
  app.UseStaticFiles();
+
+//for the wwwroot/images folder
+string uploadsDir = Path.Combine(app.Environment.WebRootPath, "images");
+if (!Directory.Exists(uploadsDir))
+    Directory.CreateDirectory(uploadsDir);
+
+app.UseStaticFiles(new StaticFileOptions()
+{
+    //RequestPath = "/images",
+    FileProvider = new PhysicalFileProvider(uploadsDir)
+});
+
 
 app.UseAuthorization();
 

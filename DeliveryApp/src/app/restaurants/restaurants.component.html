@@ -5,15 +5,10 @@
       <div *ngIf="!restaurants" class="title">Loading...</div>
 
       <div *ngIf="restaurants&&restaurants.length == 0">
-
-          <div class="no_content">
-            <div>We still don`t have Restaurants from this Category</div>
-            <div class="img_wrapper">
-              <img src="../../assets/logos/noContent.png" alt="noContent" />
-            </div>
-          </div>
-
-        </div>
+        <app-no-data>
+          <div>We still don`t have Restaurants from this Category</div>
+        </app-no-data>
+      </div>
 
       <div *ngFor="let rest of restaurants" class="restaurant_container">
 

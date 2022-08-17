@@ -8,5 +8,5 @@ export interface Restaurant {
   image: string
   category: Category
   categoryId: number
-  stars:number
+  stars: number
 }

@@ -1,9 +1,15 @@
 <section class="product_section">
   <div class="container">
-    <div class="title" *ngIf="!products">
-      Loading..
+    <div class="title" *ngIf="!products&&noData==false">
+      Loading...
     </div>
-    
+
+    <div *ngIf="noData">
+      <app-no-data>
+        <div>This Restaurant still don`t have any Products.</div>
+      </app-no-data>
+    </div>
+
     <div *ngIf="restName" class="main_title">{{restName}} Best Products</div>
     <div class="products_wrapper">
       <div *ngFor="let prod of products">

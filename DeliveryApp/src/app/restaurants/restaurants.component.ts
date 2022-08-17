@@ -39,7 +39,7 @@ export class RestaurantsComponent implements OnInit {
       this.http.get<Restaurant[]>(environment.baseUrl + '/Delivery/restaurants/'+this.id).subscribe(result => {
         result.map(res => {
           res.stars = Math.floor(res.raiting);
-          res.image = this.env.imgUrl + '/' + res.image;
+          res.image = this.env.imgUrl + '/Restaurants/' + res.image;
         })
         this.restaurants = result;
       }, error => console.error(error));

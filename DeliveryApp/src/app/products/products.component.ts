@@ -17,6 +17,7 @@ export class ProductsComponent implements OnInit {
   products!: Product[];
   env = environment;
   restName?: string;
+  noData: boolean = false;
 
   ngOnInit(): void {
     this.loadProducts();
@@ -28,12 +29,17 @@ export class ProductsComponent implements OnInit {
     this.restId = id ? +id : 0;
 
     this.http.get<Product[]>(environment.baseUrl + '/Delivery/products/' + this.restId).subscribe(result => {
-      result.map(res => {
-        res.img = this.env.imgUrl + '/' + res.img;
-      })
-      this.restName = result[0].restaurantName;
-      this.products = result;
-     
+      if (result.length == 0) {
+        this.noData = true;
+      }
+      else {
+        result.map(res => {
+          res.img = this.env.imgUrl + '/Products/' + res.img;
+        })
+        this.restName = result[0].restaurantName;
+        this.products = result;
+        console.log("Res", result);
+      }
     }, error => console.error(error));
 
   }
