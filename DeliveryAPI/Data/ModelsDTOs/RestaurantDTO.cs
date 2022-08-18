@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DeliveryAPI.Data.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace DeliveryAPI.Data.ModelsDTOs
 {
@@ -16,6 +17,9 @@ namespace DeliveryAPI.Data.ModelsDTOs
         public int Votes { get; set; } = 0;
 
         public string Owner { get; set; } = null!;
+
+        public Category? Category { get; set; } = null!;
+
         public int CategoryId { get; set; }
     }
 }

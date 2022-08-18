@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ryCh8zBYWykgFfmU+jIpSTCxCB+IvSsnMC0lVTMx2Dk=",
+  "Hash": "4eNm781V0sWMs8WkL3WGvSFvtIACnbantPHNAh0FFWU=",
   "Source": "DeliveryAPI",
   "BasePath": "_content/DeliveryAPI",
   "Mode": "Default",
@@ -170,12 +170,12 @@
       "OriginalItemSpec": "wwwroot\\Images\\Products\\other.jpg"
     },
     {
-      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\20200330_180601.jpg",
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\burger.jpg",
       "SourceId": "DeliveryAPI",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
       "BasePath": "_content/DeliveryAPI",
-      "RelativePath": "Images/Restaurants/20200330_180601.jpg",
+      "RelativePath": "Images/Restaurants/burger.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -184,41 +184,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\Restaurants\\20200330_180601.jpg"
-    },
-    {
-      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\20200503_160451.jpg",
-      "SourceId": "DeliveryAPI",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
-      "BasePath": "_content/DeliveryAPI",
-      "RelativePath": "Images/Restaurants/20200503_160451.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\Restaurants\\20200503_160451.jpg"
-    },
-    {
-      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\20200503_160455.jpg",
-      "SourceId": "DeliveryAPI",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
-      "BasePath": "_content/DeliveryAPI",
-      "RelativePath": "Images/Restaurants/20200503_160455.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Images\\Restaurants\\20200503_160455.jpg"
+      "OriginalItemSpec": "wwwroot\\Images\\Restaurants\\burger.jpg"
     },
     {
       "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\cBurger.jpg",
@@ -389,6 +355,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Restaurants\\pizStar.jpg"
+    },
+    {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\restaurant.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/Restaurants/restaurant.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Restaurants\\restaurant.jpg"
+    },
+    {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\whiteres.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/Restaurants/whiteres.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Restaurants\\whiteres.jpg"
     }
   ]
 }

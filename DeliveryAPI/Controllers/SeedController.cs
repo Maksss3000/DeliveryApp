@@ -40,8 +40,8 @@ namespace DeliveryAPI.Controllers
 
                 await _context.Categories!.AddRangeAsync(pizza, burger, sandwich, hotDog,other);
 
-                Restaurant mcD = new Restaurant { Name = "MDonalds", Category = burger, Image = "mc.jpg" };
-                Restaurant pizzaStar = new Restaurant { Name = "PizzaStar", Category = pizza, Image = "pizStar.jpg" };
+                Restaurant mcD = new Restaurant { Name = "MDonalds", Category = burger, Image = "mc.jpg" ,Owner="maksss3000"};
+                Restaurant pizzaStar = new Restaurant { Name = "PizzaStar", Category = pizza, Image = "pizStar.jpg" ,Owner="boris3000" };
                 await _context.Restaurants.AddRangeAsync(mcD, pizzaStar);
 
                 Product cheezeBurger = new Product { Name = "CheezeBurger", Description = "Very Tasty Burger , with Cheeze", Price = 65, Image = "cBurger.jpg", Restaurant = mcD };

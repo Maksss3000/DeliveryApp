@@ -63,6 +63,31 @@ namespace DeliveryAPI.Controllers
         }
 
         [HttpGet]
+        [Route("restaurant/{id}")]
+        public async Task<ActionResult<RestaurantDTO>> GetRestaurant(int id)
+        {
+            if (_context.Restaurants == null)
+            {
+                return NotFound();
+            }
+            var restaurant = await _context.Restaurants.Include(r => r.Category).Where(r=>r.Id==id).FirstAsync();
+            //var res = await _context.Restaurants.Include(c => c.Category).Where(r => r.Id == id)
+
+            if (restaurant == null)
+            {
+                return NotFound();
+            }
+            
+            return new RestaurantDTO
+            {
+                Name = restaurant.Name,
+                CategoryId=restaurant.CategoryId,
+                Owner = restaurant.Owner,
+                Image=restaurant.Image
+            };
+        }
+
+        [HttpGet]
         [Route("products/{id}")]
         public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProducts(int id)
         {
@@ -87,15 +112,15 @@ namespace DeliveryAPI.Controllers
 
         [HttpPost]
         [DisableRequestSizeLimit]
-        [Route("editRest")]
-        public async Task<IActionResult> EditRestaurant([FromForm] RestaurantDTO restaurant)
+        [Route("addRest")]
+        public async Task<IActionResult> AddRestaurantAsync([FromForm] RestaurantDTO restaurant)
         {
             try
             {
                 //Save Image.
                 string webRootPath = _hostingEnvironment.WebRootPath;
                 await FileSaver.SaveFileAsync(webRootPath, restaurant.ImageFile);
-
+              
               
                 await _context.Restaurants.AddAsync(new Restaurant
                 {
@@ -122,6 +147,35 @@ namespace DeliveryAPI.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Upload failed: " + ex.Message);
             }
+        }
+
+        [HttpPut]
+        [DisableRequestSizeLimit]
+        [Route("editRest")]
+        public async Task<IActionResult> EditRestaurantAsync([FromForm] RestaurantDTO restaurant,int id)
+        {
+            var oldRest = await _context.Restaurants.FindAsync(id);
+            if (oldRest != null)
+            {
+                oldRest.Name = restaurant.Name;
+                oldRest.CategoryId = restaurant.CategoryId;
+                oldRest.Image = restaurant.Image;
+                oldRest.Owner = restaurant.Owner;
+
+                await _context.SaveChangesAsync();
+
+                //Save Image.
+                string webRootPath = _hostingEnvironment.WebRootPath;
+                await FileSaver.SaveFileAsync(webRootPath, restaurant.ImageFile);
+
+                return Ok(oldRest);
+            }
+
+            else
+            {
+                return BadRequest();
+            }
+            //await _context.Restaurants.Update(restaurant);
         }
     }
 }

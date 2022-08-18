@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
   { path: "restaurants", component: RestaurantsComponent },
   { path: "restaurants/:id", component: RestaurantsComponent },
-  { path: "restaurant", component:  RestaurantAddComponent },
+  { path: "restaurant", component: RestaurantAddComponent },
+  { path: "restaurant/:id", component: RestaurantAddComponent },
   { path: "categories", component: CategoriesComponent },
   { path: "products/:id", component: ProductsComponent }
   
