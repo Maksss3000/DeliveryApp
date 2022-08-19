@@ -8,14 +8,14 @@ import { FormGroup, FormControl, Validators, AbstractControl, AsyncValidatorFn }
 import { EmptyStringValidator } from '../validators/emptyStringValidator';
 import { Restaurant} from '../restaurants/restaurant';
 import { NgxImageCompressService } from 'ngx-image-compress';
-
+import { BaseFormComponent } from '../base-form.component';
 
 @Component({
   selector: 'app-restaurant-add',
   templateUrl: './restaurant-add.component.html',
   styleUrls: ['./restaurant-add.component.scss']
 })
-export class RestaurantAddComponent implements OnInit {
+export class RestaurantAddComponent extends BaseFormComponent implements OnInit  {
 
   //the view title
   title?: string="Create";
@@ -28,21 +28,23 @@ export class RestaurantAddComponent implements OnInit {
   categories!: Category[];
 
   //the form model
-  form!: FormGroup;
+  //form!: FormGroup;
 
   restaurant?: Restaurant;
 
   ownerName!: string;
 
-  uploadFile!: File;
+  //uploadFile!: File;
 
-  compressedImg!: File;
+  //compressedImg!: File;
 
-  localUrl!: string;
-  localCompressedURl!: string;
+  //localUrl!: string;
+  //localCompressedURl!: string;
 
-  constructor(private http: HttpClient, private imageCompress: NgxImageCompressService,
-              private activatedRoute: ActivatedRoute) { }
+  constructor(private http: HttpClient,
+    private activatedRoute: ActivatedRoute, imageCompress: NgxImageCompressService) {
+    super(imageCompress);
+  }
 
   ngOnInit(): void {
 
@@ -72,20 +74,29 @@ export class RestaurantAddComponent implements OnInit {
       //Getting specific Restaurant
       this.http.get<Restaurant>(environment.baseUrl + '/Delivery/restaurant/'+this.id).subscribe(result => {
         this.restaurant = result;
-        //If User is NOT owner of the specific restaurant
-        //Redirecting him to another route.(Forbidden/your Restaurants..)
-        /*
-        if (this.restaurant.owner != this.ownerName) {
-          //Redirect.
-        }
-        */
 
-        //Setting to our form values from API.
-        this.form.patchValue({
-          name: result.name,
-          category: result.categoryId,
-          owner: result.owner
-        });
+        if (this.restaurant) {
+          this.title = "Edit";
+          console.log(this.restaurant);
+          //If User is NOT owner of the specific restaurant
+          //Redirecting him to another route.(Forbidden/your Restaurants..)
+          /*
+          if (this.restaurant.owner != this.ownerName) {
+            //Redirect.
+          }
+          */
+
+          //Setting to our form values from API.
+          this.form.patchValue({
+            name: result.name,
+            category: result.categoryId,
+            owner: result.owner
+          });
+        }
+        else {
+          console.log("Redirect , because we don`t have this restaurant in DB");
+        }
+      
       }, error => console.log(error));
 
       //console.log("Restaurant 3",this.restaurant);
@@ -93,7 +104,7 @@ export class RestaurantAddComponent implements OnInit {
       //restaurant value properties have the same name
       //as FormControl input names
       //this.form.patchValue(this.restaurant!);
-      this.title = "Edit";
+     // this.title = "Edit";
     }
   }
   loadCategories() {
@@ -104,58 +115,7 @@ export class RestaurantAddComponent implements OnInit {
       this.categories = result
     }, error => console.error(error))
   }
-
-  upload(files: FileList) {
- 
-    if (files.length > 0) {
-      this.uploadFile = files[0];
-
-      //Compressing File that user choosed.
-      var reader = new FileReader();
-      reader.onload = (event: any) => {
-        this.localUrl = event.target.result;
-        this.compressFile(this.localUrl, this.uploadFile.name);
-      }
-      reader.readAsDataURL(this.uploadFile);
-    }
-      
-    if (files.length === 0)
-      return;
-  }
-
-  compressFile(image: string, fileName: string) {
-
-    var orientation = -1;
-    //ratio x% , quality x%
-    this.imageCompress.compressFile(image, orientation, 70, 70).then(
-      result => {
-        this.localCompressedURl = result;
-        // create file from byte
-        const imageName = fileName;
-
-        // call method that creates a Blob from dataUri
-        const imageBlob = this.dataURItoBlob(result.split(',')[1]);
-
-        //the new compressed file
-        this.compressedImg = new File([imageBlob], imageName, {type:'image/jpeg'});
-    
-        console.log("CompressedImg in Method", this.compressedImg);
-
-      });
-  }
-
-  //creating Blob
-  dataURItoBlob(dataURI: string) {
-    const byteString = window.atob(dataURI);
-    const arrayBuffer = new ArrayBuffer(byteString.length);
-    const int8Array = new Uint8Array(arrayBuffer);
-    for (let i = 0; i < byteString.length; i++) {
-      int8Array[i] = byteString.charCodeAt(i);
-    }
-    const blob = new Blob([int8Array], { type: 'image/jpeg' });
-    return blob;
-  }
-
+  
   onSubmit() {
    
     const formData = new FormData();
@@ -174,15 +134,15 @@ export class RestaurantAddComponent implements OnInit {
     //Edit Restaurants
     if (this.id) {
       var params = new HttpParams().set("id", this.id);
-      this.http.put < Restaurant>(environment.baseUrl + '/Delivery/editRest', formData, { params }).subscribe(result => {
+      this.http.put<Restaurant>(environment.baseUrl + '/Delivery/editRest', formData, { params }).subscribe(result => {
         console.log(result);
-      })
+      }, error => console.error(error));
     }
     //Add Restaurant
     else {
       this.http.post<Restaurant>(environment.baseUrl + '/Delivery/addRest', formData).subscribe(result => {
         console.log(result);
-      });
+      }, error => console.error(error));
     }
    
   }

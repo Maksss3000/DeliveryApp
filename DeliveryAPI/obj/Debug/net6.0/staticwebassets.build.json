@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4eNm781V0sWMs8WkL3WGvSFvtIACnbantPHNAh0FFWU=",
+  "Hash": "0qtP8Uo74PkiAOAuQcVqgEkRm6Pq0sy/AWQRxS3skN4=",
   "Source": "DeliveryAPI",
   "BasePath": "_content/DeliveryAPI",
   "Mode": "Default",
@@ -304,6 +304,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Restaurants\\logo.png"
+    },
+    {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\margarita.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/Restaurants/margarita.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Restaurants\\margarita.jpg"
+    },
+    {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\maxmeat.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/Restaurants/maxmeat.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Restaurants\\maxmeat.jpg"
     },
     {
       "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\mc.jpg",

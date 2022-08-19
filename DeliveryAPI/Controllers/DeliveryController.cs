@@ -70,13 +70,17 @@ namespace DeliveryAPI.Controllers
             {
                 return NotFound();
             }
+
+            //Checking if we have this Restaurant in DB.
+            if (! await _context.Restaurants.AnyAsync(r => r.Id == id))
+            {
+                return Ok(null);
+            }
+
             var restaurant = await _context.Restaurants.Include(r => r.Category).Where(r=>r.Id==id).FirstAsync();
             //var res = await _context.Restaurants.Include(c => c.Category).Where(r => r.Id == id)
 
-            if (restaurant == null)
-            {
-                return NotFound();
-            }
+          
             
             return new RestaurantDTO
             {
