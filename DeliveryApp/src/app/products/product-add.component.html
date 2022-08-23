@@ -1,1 +1,58 @@
-<p>product-add works!</p>
+<h1>{{title}} Product</h1>
+<div *ngIf="!restaurants; else loaded">Loading...</div>
+
+<ng-template #loaded>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label>Name</label>
+      <input class="form-control" formControlName="name" required placeholder="Please enter product Name" />
+      <div *ngIf="(form.controls['name'].errors?.['required'] ||  this.form.controls['name'].errors?.['emptyString']) && form.controls['name'].touched">
+        Please enter product name.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Price</label>
+      <input class="form-control" type="number" formControlName="price" required placeholder="Please enter product Price" />
+      <div *ngIf="(form.controls['price'].errors?.['required'] || this.form.controls['price'].errors?.['pattern']) && form.controls['price'].touched">
+        Please enter product price.
+      </div>
+      <div *ngIf="this.form.controls['price'].errors?.['max']">
+        Max price 50000  
+      </div>
+    </div>
+
+
+    <select formControlName="restaurant" id="restaurant">
+      <option disabled value="">Select Restaurant</option>
+      <option *ngFor="let rest of restaurants" [ngValue]="rest.id">
+        {{rest.name}}
+      </option>
+    </select>
+    <div *ngIf="form.controls['restaurant'].errors?.['required']">
+      Please select Restaurant
+    </div>
+    <div class="form-group">
+
+      <label for="desc">Product Description</label>
+
+      <textarea  ng-model="desc" formControlName="description" id="desc" name="desc" rows="4" cols="40">
+      </textarea>
+      <div *ngIf="form.controls['description'].errors?.['required']||form.controls['description'].errors?.['emptyString']">
+        Please enter description. 
+      </div>
+    </div>
+
+
+    <div class="custom-file">
+      <input type="file" formControlName="image" accept=".jpg,.jpeg,.png,.gif,.svg" (change)="upload($any($event.target).files)" />
+    </div>
+    <div *ngIf="this.form.controls['image'].errors?.['required']">
+      Please select Image
+    </div>
+
+    <button type="submit" [disabled]="!form.valid">{{title}}</button>
+  </form>
+</ng-template>
+

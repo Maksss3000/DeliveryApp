@@ -6,12 +6,12 @@ namespace DeliveryAPI.Data
 {
     public class FileSaver
     {
-        public static async Task SaveFileAsync(string webRootPath, IFormFile file)
+        public static async Task SaveFileAsync(string webRootPath,string folder, IFormFile file)
         {
            
-            string uploadsDir = Path.Combine(webRootPath, "Images/Restaurants");
+            string uploadsDir = Path.Combine(webRootPath, $"Images/{folder}");
 
-            // wwwroot/images/restaurants
+            // wwwroot/images/folderName
             if (!Directory.Exists(uploadsDir))
                 Directory.CreateDirectory(uploadsDir);
 

@@ -10,8 +10,10 @@
 
         public string Description { get; set; } = null!;
 
-        public string Img{ get; set; } = null!;
+        public IFormFile ImageFile { get; set; } = null!;
+        public string Image{ get; set; } = null!;
 
-        public string RestaurantName { get; set; } = null!;
+        public string? RestaurantName { get; set; }
+        public int RestaurantId { get; set; }
     }
 }

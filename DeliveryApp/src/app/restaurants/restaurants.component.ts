@@ -1,6 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { Restaurant } from './restaurant';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { ActivatedRoute} from "@angular/router";
 
@@ -34,9 +34,9 @@ export class RestaurantsComponent implements OnInit {
 
       
       //We will get all Restaurants if we didn`t passed any id(category Id) or
-      //Restaurant of Specific Category.
-    
-      this.http.get<Restaurant[]>(environment.baseUrl + '/Delivery/restaurants/'+this.id).subscribe(result => {
+    //Restaurant of Specific Category.
+   
+    this.http.get<Restaurant[]>(environment.baseUrl + '/Delivery/restaurants/' + this.id).subscribe(result => {
         result.map(res => {
           res.stars = Math.floor(res.raiting);
           res.image = this.env.imgUrl + '/Restaurants/' + res.image;

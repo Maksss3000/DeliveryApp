@@ -5,6 +5,7 @@ import { RestaurantsComponent } from './restaurants/restaurants.component';
 import { RestaurantAddComponent } from './restaurant/restaurant-add.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { ProductsComponent } from './products/products.component';
+import { ProductAddComponent } from './products/product-add.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
@@ -13,7 +14,9 @@ const routes: Routes = [
   { path: "restaurant", component: RestaurantAddComponent },
   { path: "restaurant/:id", component: RestaurantAddComponent },
   { path: "categories", component: CategoriesComponent },
-  { path: "products/:id", component: ProductsComponent }
+  { path: "products/:id", component: ProductsComponent },
+  { path: "product", component: ProductAddComponent },
+  { path: "product/:id", component: ProductAddComponent }
   
 ];
 

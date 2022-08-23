@@ -34,7 +34,7 @@ export class ProductsComponent implements OnInit {
       }
       else {
         result.map(res => {
-          res.img = this.env.imgUrl + '/Products/' + res.img;
+          res.image = this.env.imgUrl + '/Products/' + res.image;
         })
         this.restName = result[0].restaurantName;
         this.products = result;

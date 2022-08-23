@@ -49,12 +49,16 @@ namespace DeliveryAPI.Controllers
 
         [HttpGet]
         [Route("restaurants/{id}")]
+        //Getting Restaurants by their Category.
         public async Task<ActionResult<IEnumerable<Restaurant>>> GetRestaurants(int id=0)
         {
+          
+            //Return List Of Restaurants
             if (id == 0)
             {
                 return await _context.Restaurants.AsNoTracking().ToListAsync();
             }
+            //Return Restaurant with specific category.
             else
             {
                 return await _context.Restaurants.AsNoTracking().Where(r => r.CategoryId == id).ToListAsync();
@@ -62,6 +66,15 @@ namespace DeliveryAPI.Controllers
           
         }
 
+        
+        [HttpGet]
+        [Route("restaurants")]
+        public async Task<ActionResult<IEnumerable<Restaurant>>> GetRestaurantsByOwner(string owner="")
+        {
+           
+         return await _context.Restaurants.AsNoTracking().Where(r => r.Owner == owner).ToListAsync();
+            
+        }
         [HttpGet]
         [Route("restaurant/{id}")]
         public async Task<ActionResult<RestaurantDTO>> GetRestaurant(int id)
@@ -72,6 +85,7 @@ namespace DeliveryAPI.Controllers
             }
 
             //Checking if we have this Restaurant in DB.
+            //If not , returning null.
             if (! await _context.Restaurants.AnyAsync(r => r.Id == id))
             {
                 return Ok(null);
@@ -92,6 +106,35 @@ namespace DeliveryAPI.Controllers
         }
 
         [HttpGet]
+        [Route("product/{id}")]
+        public async Task<ActionResult<ProductDTO>> GetProduct(int id)
+        {
+            if (_context.Products == null)
+            {
+                return NotFound();
+            }
+
+            //Checking if we have this Product in DB.
+            //If not , returning null.
+            if (!await _context.Products.AnyAsync(p=> p.Id == id))
+            {
+                return Ok(null);
+            }
+
+            var product = await _context.Products.FindAsync(id);
+
+           
+                return new ProductDTO
+                {
+                    Name = product!.Name,
+                    Price = product.Price,
+                    Description = product.Description,
+                    RestaurantId = product.RestaurantId
+
+                };
+        }
+
+        [HttpGet]
         [Route("products/{id}")]
         public async Task<ActionResult<IEnumerable<ProductDTO>>> GetProducts(int id)
         {
@@ -107,13 +150,46 @@ namespace DeliveryAPI.Controllers
                Id=p.Id,
                Name=p.Name,
                Description=p.Description,
-               Img=p.Image,
+               Image=p.Image,
                Price=p.Price,
                RestaurantName=p.Restaurant!.Name
 
             }).ToListAsync();
         }
 
+        [HttpPost]
+        [DisableRequestSizeLimit]
+        [Route("addProd")]
+        public async Task<IActionResult> AddProductAsync([FromForm] ProductDTO product)
+        {
+            try
+            {
+                //Save Image.
+                string webRootPath = _hostingEnvironment.WebRootPath;
+                string folder = "Products";
+                await FileSaver.SaveFileAsync(webRootPath, folder, product.ImageFile);
+
+
+                await _context.Products.AddAsync(new Product
+                {
+                    Name = product.Name,
+                    Price = product.Price,
+                    Description = product.Description,
+                    Image = product.Image,
+                    RestaurantId=product.RestaurantId,
+                    
+                });
+                await _context.SaveChangesAsync();
+              
+
+                return Ok(product);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Upload failed: " + ex.Message);
+            }
+        }
+       
         [HttpPost]
         [DisableRequestSizeLimit]
         [Route("addRest")]
@@ -123,7 +199,8 @@ namespace DeliveryAPI.Controllers
             {
                 //Save Image.
                 string webRootPath = _hostingEnvironment.WebRootPath;
-                await FileSaver.SaveFileAsync(webRootPath, restaurant.ImageFile);
+                string folder = "Restaurants";
+                await FileSaver.SaveFileAsync(webRootPath,folder,restaurant.ImageFile);
               
               
                 await _context.Restaurants.AddAsync(new Restaurant
@@ -135,21 +212,41 @@ namespace DeliveryAPI.Controllers
 
                 });
                 await _context.SaveChangesAsync();
-                /*
-                string location = $"images/{fileName}";
-
-                var result = new
-                {
-                    message = "Upload successful",
-                    url = location
-                };
-                */
-
+              
                 return Ok(restaurant);
             }
             catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Upload failed: " + ex.Message);
+            }
+        }
+        [HttpPut]
+        [DisableRequestSizeLimit]
+        [Route("editProd")]
+        public async Task<IActionResult> EditProductAsync([FromForm] ProductDTO product,int id)
+        {
+            var oldProd = await _context.Products.FindAsync(id);
+            if (oldProd != null)
+            {
+                oldProd.Name = product.Name;
+                oldProd.Description = product.Description;
+                oldProd.RestaurantId = product.RestaurantId;
+                oldProd.Price=product.Price;
+                oldProd.Image = product.Image;
+               
+
+                await _context.SaveChangesAsync();
+
+                //Save Image.
+                string webRootPath = _hostingEnvironment.WebRootPath;
+                await FileSaver.SaveFileAsync(webRootPath, "Products", product.ImageFile);
+
+                return Ok(oldProd);
+            }
+
+            else
+            {
+                return BadRequest();
             }
         }
 
@@ -170,7 +267,7 @@ namespace DeliveryAPI.Controllers
 
                 //Save Image.
                 string webRootPath = _hostingEnvironment.WebRootPath;
-                await FileSaver.SaveFileAsync(webRootPath, restaurant.ImageFile);
+                await FileSaver.SaveFileAsync(webRootPath, "Restaurants",restaurant.ImageFile);
 
                 return Ok(oldRest);
             }

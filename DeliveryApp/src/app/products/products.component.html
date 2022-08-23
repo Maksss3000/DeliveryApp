@@ -12,10 +12,10 @@
 
     <div *ngIf="restName" class="main_title">{{restName}} Best Products</div>
     <div class="products_wrapper">
-      <div *ngFor="let prod of products">
-        <div class="product">
+      <div *ngFor="let prod of products" class="product">
+        
           <div class="img_wrapper">
-            <img src="{{prod.img}}" alt="{{prod.name}}" />
+            <img src="{{prod.image}}" alt="{{prod.name}}" />
           </div>
           <div class="prod_desc">
             <span>{{prod.name}}</span>
@@ -30,7 +30,7 @@
               </button>
             </p>
           </div>
-        </div>
+       
       </div>
        
     </div>

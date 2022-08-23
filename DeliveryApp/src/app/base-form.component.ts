@@ -17,7 +17,7 @@ export abstract class BaseFormComponent {
 
   localUrl!: string;
   localCompressedURl!: string;
-
+  
   upload(files: FileList) {
 
     if (files.length > 0) {
