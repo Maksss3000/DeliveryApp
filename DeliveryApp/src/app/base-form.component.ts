@@ -40,7 +40,7 @@ export abstract class BaseFormComponent {
 
     var orientation = -1;
     //ratio x% , quality x%
-    this.imageCompress.compressFile(image, orientation, 70, 70).then(
+    this.imageCompress.compressFile(image, orientation, 100, 40).then(
       result => {
         this.localCompressedURl = result;
         // create file from byte

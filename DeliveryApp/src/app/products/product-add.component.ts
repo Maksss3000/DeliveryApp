@@ -36,7 +36,7 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
   ngOnInit(): void {
 
     //will get this name from IdentityContext(user name).
-    this.ownerName = "boris3000";
+    this.ownerName = "maksss3000";
 
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2), EmptyStringValidator.emptyString]),

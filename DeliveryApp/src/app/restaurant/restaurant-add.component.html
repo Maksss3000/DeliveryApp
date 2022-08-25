@@ -1,7 +1,8 @@
-<h1>{{title}} Restaurant</h1>
-<div *ngIf="!categories; else loaded">Loading...</div>
+
+<div *ngIf="!categories; else loaded" class="title">Loading...</div>
 
 <ng-template #loaded>
+  <!--
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
     <div class="form-group">
@@ -34,5 +35,65 @@
 
     <button type="submit" [disabled]="!form.valid">{{title}}</button>
   </form>
+  -->
+  <section class="form_rest_section">
+    <div class="container form_wrapper">
+      <div class="rest_form_container">
+        <h1 class="rest_form_title">{{title}} Restaurant</h1>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="input_group">
+            <label>Name</label>
+            <input 
+                   formControlName="name"
+                   required
+                   [ngClass]="{'red':form.controls['name'].errors?.['required']}"                                                                                               
+                   placeholder="Please enter a restaurant name" />
+                   
+            <div class="error"
+                 [ngClass]="{'visible':form.controls['name'].errors?.['required'] ||this.form.controls['name'].errors?.['emptyString']}"                                                                                                    
+                 >
+              Please enter restaurant name.
+            </div>
+          </div>
+          <div class="select_group">
+            <select formControlName="category" id="category" [ngClass]="{'red':form.controls['category'].errors?.['required']}">
+              <option disabled value="">Select Restaurant Category</option>
+              <option *ngFor="let cat of categories" [ngValue]="cat.id">
+                {{cat.name}}
+              </option>
+            </select>
+            <div class="error"
+                 [ngClass]="{'visible':form.controls['category'].errors?.['required']}">
+              Please select a Category.
+            </div>
+          </div>
+
+          <input class="form-control"
+                 formControlName="owner"
+                 hidden
+                 required />
+          <div class="file_group">
+            <label for="image">Image</label>
+
+            <div class="custom_file">
+              <input class="file_input"
+                     type="file"
+                     formControlName="image"
+                     accept=".jpg,.jpeg,.png,.gif,.svg"
+                     (change)="upload($any($event.target).files)" />
+            </div>
+            <div class="error"
+                [ngClass]="{'visible':this.form.controls['image'].errors?.['required']}">
+              Please select Image
+            </div>
+          </div>
+
+          <button class="submit_btn" type="submit" [disabled]="!form.valid">
+            {{title}}
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
 </ng-template>
 

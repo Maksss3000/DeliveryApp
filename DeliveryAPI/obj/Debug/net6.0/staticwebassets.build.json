@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IRDzSRAp2ZufPMpEstDYUApd9cdtIW1jtCSYs9iFX08=",
+  "Hash": "5btxbRxcxBS/L3QRXIVDbHNbtatOF0/Y1+lCmj/IYt0=",
   "Source": "DeliveryAPI",
   "BasePath": "_content/DeliveryAPI",
   "Mode": "Default",
@@ -100,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Categories\\sandwich.jpg"
+    },
+    {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Products\\burger.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/Products/burger.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Products\\burger.jpg"
     },
     {
       "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Products\\cBurger.jpg",
@@ -238,6 +255,40 @@
       "OriginalItemSpec": "wwwroot\\Images\\Products\\maxolives.jpg"
     },
     {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Products\\maxvegetables.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/Products/maxvegetables.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Products\\maxvegetables.jpg"
+    },
+    {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Products\\mc.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/Products/mc.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Products\\mc.jpg"
+    },
+    {
       "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Products\\other.jpg",
       "SourceId": "DeliveryAPI",
       "SourceType": "Discovered",
@@ -253,6 +304,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Products\\other.jpg"
+    },
+    {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Products\\sloppy.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/Products/sloppy.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Products\\sloppy.jpg"
     },
     {
       "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\burger.jpg",
@@ -491,6 +559,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Restaurants\\restaurant.jpg"
+    },
+    {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\sandwichRest.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/Restaurants/sandwichRest.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Restaurants\\sandwichRest.jpg"
     },
     {
       "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\whiteres.jpg",
