@@ -1,0 +1,154 @@
+@import '_mixins.scss';
+
+$light-hsl: hsla(200, 100%, 91%, 0.3);
+$primary-hsl: hsla(200, 100%, 50%, 0.3);
+$dark-hsl: hsla(200, 100%, 6%, 0.7);
+$error-hsl: hsl(0,60%,50%);
+
+.title {
+  @include title(2em);
+  padding-top: 0.5em;
+}
+
+.form_rest_section {
+  padding-bottom: 10px;
+}
+
+.form_wrapper {
+ // background: url(../../assets/logos/rest.jpg) center center/cover;
+  height: 85vh;
+  //width: 95vw;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rest_form_container {
+  background-color: $dark-hsl;
+  box-shadow: 0 0 0 1px $dark-hsl;
+  border-radius: 20px;
+  padding: 40px 30px;
+  width: 80%;
+  max-width: 600px;
+  //   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  form {
+    margin-top: 10px;
+    // line-height: 1.5em;
+    // div {
+    //   padding-top: 10px;
+    // }
+    .input_group {
+      input {
+        &:focus {
+          box-shadow: 0 0 0 1px hsl(200, 100%, 50%);
+        }
+      }
+    }
+
+    .input_group,
+    .select_group,
+    .file_group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 1em;
+
+      ::placeholder {
+        color: white;
+      }
+
+      input,
+      select {
+        font-size: 1rem;
+        border: none;
+        outline: none;
+        border-radius: 0.25em;
+        background-color: $light-hsl;
+        color: white;
+        font-weight: lighter;
+      }
+
+      input {
+
+        &::file-selector-button {
+          display: inline-block;
+          border-radius: 0.25em;
+          background-color: $primary-hsl;
+          color: whitesmoke;
+          border: none;
+          outline: none;
+          padding: 10px;
+          cursor: pointer;
+        }
+      }
+
+      .file_input {
+        color: white;
+      }
+    }
+
+    label {
+      color: white;
+      font-weight: lighter;
+      padding-bottom: 7px;
+    }
+
+    .error {
+      font-weight: bold;
+      padding-top: 4px;
+      color: red;
+      visibility: hidden;
+    }
+
+
+    .visible {
+      visibility: visible;
+    }
+
+    .submit_btn {
+      border: none;
+      outline: none;
+      margin-top: 7px;
+      width: 100%;
+      cursor: pointer;
+      border-radius: 0.25em;
+      background-color: $primary-hsl;
+      color: whitesmoke;
+      padding: 10px;
+      font-size: 1.2em;
+      /*
+      &.brown {
+        background-color: hsla(0, 0%, 50%,0.3);
+      }
+      */
+    }
+
+    button:disabled {
+      background-color: hsla(0, 0%, 80%,0.8);
+      color: #666666;
+    }
+  }
+
+  .rest_form_title {
+    font-size: 2rem;
+    color: white;
+    font-weight: normal;
+  }
+
+  .red {
+    box-shadow: 0 0 0 1px $error-hsl;
+  }
+  /*
+      button {
+    .submit_btn {
+      .brown {
+        background-color: hsla(0, 0%, 50%,0.3);
+      }
+    }
+  }
+  */
+}

@@ -52,7 +52,7 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
     this.ownerName = "maksss3000";
    
     this.form = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(2), EmptyStringValidator.emptyString]),
+      name: new FormControl('', [Validators.required, EmptyStringValidator.emptyString]),
       category: new FormControl('', Validators.required),
       image: new FormControl('', Validators.required),
       owner: new FormControl(this.ownerName, Validators.required)
