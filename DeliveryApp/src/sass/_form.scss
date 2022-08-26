@@ -15,7 +15,14 @@ $error-hsl: hsl(0,60%,50%);
 }
 
 .form_wrapper {
- // background: url(../../assets/logos/rest.jpg) center center/cover;
+  .txt_area {
+      border:none;
+      outline:none;
+    &:focus {
+      box-shadow: 0 0 0 1px hsl(200, 100%, 50%);
+    }
+  }
+  // background: url(../../assets/logos/rest.jpg) center center/cover;
   height: 85vh;
   //width: 95vw;
   border-radius: 10px;

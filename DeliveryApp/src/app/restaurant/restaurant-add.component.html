@@ -2,40 +2,7 @@
 <div *ngIf="!categories; else loaded" class="title">Loading...</div>
 
 <ng-template #loaded>
-  <!--
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-
-    <div class="form-group">
-      <label>Name</label>
-      <input class="form-control" formControlName="name" required placeholder="Please enter a restaurant Name" />
-      <div *ngIf="(form.controls['name'].errors?.['required'] ||  this.form.controls['name'].errors?.['emptyString']) && form.controls['name'].touched">
-        Please enter restaurant name.
-      </div>
-    </div>
-
-    <select formControlName="category" id="category">
-      <option disabled value="">Select Restaurant Category</option>
-      <option *ngFor="let cat of categories" [ngValue]="cat.id">
-        {{cat.name}}
-      </option>
-    </select>
-    <div *ngIf="form.controls['category'].errors?.['required']">
-      Please select a Category.
-    </div>
-    <input class="form-control" formControlName="owner" hidden required />
-
-    <label for="image">Image</label>
-
-    <div class="custom-file">
-      <input type="file" formControlName="image" accept=".jpg,.jpeg,.png,.gif,.svg" (change)="upload($any($event.target).files)" />
-    </div>
-    <div *ngIf="this.form.controls['image'].errors?.['required']">
-      Please select Image
-    </div>
-
-    <button type="submit" [disabled]="!form.valid">{{title}}</button>
-  </form>
-  -->
+  
   <section class="form_rest_section">
     <div class="container form_wrapper">
       <div class="rest_form_container">
@@ -68,7 +35,7 @@
             </div>
           </div>
 
-          <input class="form-control"
+          <input
                  formControlName="owner"
                  hidden
                  required />
