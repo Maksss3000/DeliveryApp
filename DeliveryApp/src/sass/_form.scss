@@ -50,9 +50,11 @@ img{
 }
 
 .vis_success {
-  transform: var(--translate) //translateY(50%);
+  transform: var(--transY);
 }
-
+.product_translate{
+    --transY:translateY(70%);
+}
 
 .form_rest_section {
   padding-bottom: 10px;
