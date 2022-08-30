@@ -18,9 +18,9 @@ import { BaseFormComponent } from '../base-form.component';
 export class RestaurantAddComponent extends BaseFormComponent implements OnInit  {
 
   //the view title
-  title?: string="Create";
+  title?: string = "Create";
 
-   //the restaurant object id,as fetched from the active route:
+  //the restaurant object id,as fetched from the active route:
   //It`s NULL when we`are adding a new resturant,
   //and not NULL when we are editing an existing one.
   id?: number;
@@ -34,6 +34,8 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
 
   ownerName!: string;
 
+  //router!: Router;
+
   //uploadFile!: File;
 
   //compressedImg!: File;
@@ -42,7 +44,7 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
   //localCompressedURl!: string;
 
   constructor(private http: HttpClient,
-    private activatedRoute: ActivatedRoute, imageCompress: NgxImageCompressService) {
+    private activatedRoute: ActivatedRoute, imageCompress: NgxImageCompressService,private router:Router) {
     super(imageCompress);
   }
 
@@ -135,15 +137,32 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
     if (this.id) {
       var params = new HttpParams().set("id", this.id);
       this.http.put<Restaurant>(environment.baseUrl + '/Delivery/editRest', formData, { params }).subscribe(result => {
-        console.log(result);
+
+        this.redirect("products", this.id);
       }, error => console.error(error));
     }
+
     //Add Restaurant
     else {
+     
       this.http.post<Restaurant>(environment.baseUrl + '/Delivery/addRest', formData).subscribe(result => {
-        console.log(result);
+        this.redirect("restaurants");
       }, error => console.error(error));
+      
     }
    
   }
+
+  redirect(path:string,param:number=0) {
+    this.success = true;
+    setTimeout(() => {
+      if (param == 0) {
+        this.router.navigate(['/' + path]);
+      }
+      else {
+        this.router.navigate(['/' + path, param]);
+      }
+    }, 2000); 
+  }
+
 }

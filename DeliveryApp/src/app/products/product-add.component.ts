@@ -28,8 +28,8 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
 
   product?: Product;
 
-  constructor(private http: HttpClient,imageCompress: NgxImageCompressService,
-    private activatedRoute: ActivatedRoute) {
+  constructor(private http: HttpClient, imageCompress: NgxImageCompressService,
+    private activatedRoute: ActivatedRoute, private router:Router) {
     super(imageCompress);
   }
 
@@ -109,7 +109,7 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
     }
   }
 
-
+  
   onSubmit() {
 
     const formData = new FormData();
@@ -124,16 +124,26 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
     //Edit Product
     if (this.id) {
       var params = new HttpParams().set("id", this.id);
+
       this.http.put<Product>(environment.baseUrl + '/Delivery/editProd', formData, { params }).subscribe(result => {
-        console.log(result);
+        this.redirect(result);
+      
       }, error => console.error(error));
     }
     //Add Product
     else {
       this.http.post<Product>(environment.baseUrl + '/Delivery/addProd', formData).subscribe(result => {
-        console.log(result);
+        this.redirect(result);
       }, error => console.error(error))
     }
-    
+
   }
+
+  redirect(result: Product) {
+    this.success = true;
+    setTimeout(() => {
+      this.router.navigate(['/products', result.restaurantId]);
+    }, 2000);
+  }
+
 }

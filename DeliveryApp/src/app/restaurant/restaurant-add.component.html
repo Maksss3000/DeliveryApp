@@ -1,6 +1,9 @@
 
 <div *ngIf="!categories; else loaded" class="title">Loading...</div>
-
+<div class="success" [style.--translate]="'translateY(10%)'" [ngClass]="{'vis_success':success}">
+  <div>Thank you!<br>Success.</div>
+  <div><img src="../../assets/logos/checked.png" alt="success" /></div>
+</div>
 <ng-template #loaded>
   
   <section class="form_rest_section">
