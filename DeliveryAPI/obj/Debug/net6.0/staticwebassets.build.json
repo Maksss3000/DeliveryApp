@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "5btxbRxcxBS/L3QRXIVDbHNbtatOF0/Y1+lCmj/IYt0=",
+  "Hash": "jMBy0la7t19LSW/K2iiVJIrEjtqoDhl+MZQWUvQ+XWM=",
   "Source": "DeliveryAPI",
   "BasePath": "_content/DeliveryAPI",
   "Mode": "Default",
@@ -423,6 +423,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\Restaurants\\hotDog.jpg"
+    },
+    {
+      "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\hotPizza.jpg",
+      "SourceId": "DeliveryAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\",
+      "BasePath": "_content/DeliveryAPI",
+      "RelativePath": "Images/Restaurants/hotPizza.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\Restaurants\\hotPizza.jpg"
     },
     {
       "Identity": "C:\\MyAngularCoreProject\\DeliveryApp\\DeliveryAPI\\wwwroot\\Images\\Restaurants\\light-man_copy.jpg",
