@@ -1,5 +1,4 @@
 using DeliveryAPI.Data;
-using DeliveryAPI.Data.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
@@ -24,7 +23,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 //Dependency Injection.
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
-
+    //Use It ?
     options.SignIn.RequireConfirmedAccount = true;
 
     options.Password.RequireDigit = true;
