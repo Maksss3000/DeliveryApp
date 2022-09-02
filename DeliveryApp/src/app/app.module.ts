@@ -17,6 +17,7 @@ import { RestaurantAddComponent } from './restaurant/restaurant-add.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NoDataComponent } from './no-data/no-data.component';
 import { ProductAddComponent } from './products/product-add.component';
+import { RegistrationComponent } from './auth/registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProductAddComponent } from './products/product-add.component';
     ProductsComponent,
     RestaurantAddComponent,
     NoDataComponent,
-    ProductAddComponent
+    ProductAddComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule, FormsModule, ReactiveFormsModule

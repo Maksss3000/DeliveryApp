@@ -24,12 +24,13 @@ namespace DeliveryAPI.Controllers
         }
 
         [HttpPost]
+        [Route("registration")]
         public async Task<ActionResult> UserRegistration(RegistrationRequest regData)
         {
             //Setup the default role name.
             string role_RegisteredUser = "RegisteredUser";
             bool roleExists;
-            RegistrationResult regRes = new RegistrationResult();
+            RegistrationResult regRes = new RegistrationResult() { Success=false};
             ApplicationUser user;
 
 
@@ -73,9 +74,7 @@ namespace DeliveryAPI.Controllers
 
             else
             {
-                regRes.Success = false;
                 regRes.Message = "User with same NickName already exists,please change it.";
-
                 return Conflict(regRes);
             }
 

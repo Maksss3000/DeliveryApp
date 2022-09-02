@@ -7,6 +7,8 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductAddComponent } from './products/product-add.component';
 
+import { RegistrationComponent } from './auth/registration/registration.component';
+
 const routes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
   { path: "restaurants", component: RestaurantsComponent },
@@ -16,7 +18,9 @@ const routes: Routes = [
   { path: "categories", component: CategoriesComponent },
   { path: "products/:id", component: ProductsComponent },
   { path: "product", component: ProductAddComponent },
-  { path: "product/:id", component: ProductAddComponent }
+  { path: "product/:id", component: ProductAddComponent },
+
+  { path: "registration", component: RegistrationComponent }
   
 ];
 

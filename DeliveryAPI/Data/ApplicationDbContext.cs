@@ -8,7 +8,8 @@ namespace DeliveryAPI.Data
     {
         public ApplicationDbContext() : base() { }
 
-        public ApplicationDbContext(DbContextOptions options) : base(options) { }
+        
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public DbSet<Category> Categories => Set<Category>();
 
