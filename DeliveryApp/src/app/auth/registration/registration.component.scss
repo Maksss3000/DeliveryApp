@@ -1,9 +1,8 @@
 @import '../../../sass/_form.scss';
 
 .form_wrapper {
-  background: url(../../../assets/logos/restaurant.jpg) center center/cover;
-  height: 100vh;
-  width: 100vw;
+  background: url(../../../assets/logos/register.jpg) center center/cover;
+  height: 90vh;
 }
 
 .rest_form_title {
@@ -12,4 +11,8 @@
 
 .rest_form_container {
   padding: 5px 10px;
+}
+    
+.reg_translate {
+  --transY: translateY(70%);
 }

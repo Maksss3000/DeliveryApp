@@ -1,5 +1,5 @@
 
-<div class="success" [style.--transY]="'translateY(10%)'" [ngClass]="{'vis_success':success}">
+<div class="success reg_translate" [ngClass]="{'vis_success':success}">
   <div>Thank you!<br>Success.</div>
   <div><img src="../../assets/logos/checked.png" alt="success" /></div>
 </div>
@@ -12,6 +12,9 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="input_group">
             <label>Nick Name</label>
+            <div class="error" [ngClass]="{'visible':sameName}">
+              {{errM}}
+            </div>
             <input formControlName="nickName"
                    required
                    [ngClass]="{'red':form.controls['nickName'].errors?.['required']}"
@@ -26,7 +29,7 @@
           <div class="input_group">
             <label>Password</label>
             <input [ngClass]="{'red':form.controls['password'].errors?.['required']}" type="password" formControlName="password" required placeholder="Password" />
-            <div class="error" [ngClass]="{'visible':(form.controls['password'].errors?.['required'] || this.form.controls['password'].errors?.['pattern']) && form.controls['password'].touched}">
+            <div class="error" [ngClass]="{'visible':(form.controls['password'].errors?.['required'] || this.form.controls['password'].errors?.['pattern'])}">
               Please enter Correct Password.
             </div>
           </div>

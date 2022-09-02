@@ -52,9 +52,6 @@ img{
 .vis_success {
   transform: var(--transY);
 }
-.product_translate{
-    --transY:translateY(70%);
-}
 
 .form_rest_section {
   padding-bottom: 10px;
@@ -69,7 +66,7 @@ img{
     }
   }
   // background: url(../../assets/logos/rest.jpg) center center/cover;
-  height: 85vh;
+  height: 83vh;
   //width: 95vw;
   border-radius: 10px;
   display: flex;

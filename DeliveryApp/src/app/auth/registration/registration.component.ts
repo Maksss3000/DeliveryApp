@@ -23,6 +23,8 @@ export class RegistrationComponent implements OnInit {
   regReq!: Request;
 
   success: boolean = false;
+  sameName: boolean = false;
+  errM: string = "";
 
   constructor(private http: HttpClient) {
     
@@ -53,14 +55,18 @@ export class RegistrationComponent implements OnInit {
     
    // this.regReq = this.form.getRawValue();
     //console.log(this.regReq);
-  
+    
     this.http.post<ResponseResult>(environment.baseUrl + '/Account/registration', this.regReq).subscribe(result => {
-
+      this.success = true;
+      this.sameName = false;
+      //Redirecting to Log-In Page.
       console.log(result);
     }, error => {
-      console.log(error);
+      if (error.status == 409) {
+        this.sameName = true;
+        this.errM = error.error.message;
+      }
     });
     
-   
   }
 }

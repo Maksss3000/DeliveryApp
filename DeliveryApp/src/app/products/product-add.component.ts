@@ -132,9 +132,11 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
     }
     //Add Product
     else {
+      
       this.http.post<Product>(environment.baseUrl + '/Delivery/addProd', formData).subscribe(result => {
         this.redirect(result);
       }, error => console.error(error))
+      
     }
 
   }
