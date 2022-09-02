@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NoDataComponent } from './no-data/no-data.component';
 import { ProductAddComponent } from './products/product-add.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { RegistrationComponent } from './auth/registration/registration.componen
     RestaurantAddComponent,
     NoDataComponent,
     ProductAddComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule, FormsModule, ReactiveFormsModule

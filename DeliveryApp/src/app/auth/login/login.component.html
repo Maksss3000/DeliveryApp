@@ -1,0 +1,41 @@
+<div class="success reg_translate" [ngClass]="{'vis_success':success}">
+  <div>{{message}}</div>
+  <div><img src="../../assets/logos/checked.png" alt="success" /></div>
+</div>
+
+<section class="form_rest_section">
+  <div class="container form_wrapper">
+    <div class="rest_form_container">
+      <h1 class="rest_form_title">{{title}}</h1>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="input_group">
+          <div class="error" [ngClass]="{'visible':error}">
+            {{message}}
+          </div>
+          <label>Nick Name</label>
+          <input formControlName="nickName"
+                 required
+                 [ngClass]="{'red':form.controls['nickName'].errors?.['required']}"
+                 placeholder="Please enter Nick Name" />
+
+          <div class="error"
+               [ngClass]="{'visible':form.controls['nickName'].errors?.['required'] ||this.form.controls['nickName'].errors?.['emptyString']}">
+            Please enter Nick Name.
+          </div>
+        </div>
+
+        <div class="input_group">
+          <label>Password</label>
+          <input [ngClass]="{'red':form.controls['password'].errors?.['required']}" type="password" formControlName="password" required placeholder="Password" />
+          <div class="error" [ngClass]="{'visible':(form.controls['password'].errors?.['required'])}">
+            Please enter Password
+          </div>
+        </div>
+
+        <button class="submit_btn" type="submit" [disabled]="!form.valid">
+          {{title}}
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

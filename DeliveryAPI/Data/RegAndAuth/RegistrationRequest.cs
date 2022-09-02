@@ -2,14 +2,9 @@
 
 namespace DeliveryAPI.Data.RegAndAuth
 {
-    public class RegistrationRequest
+    public class RegistrationRequest :Request
     {
-        [Required(ErrorMessage = "NickName is required.")]
-        public string NickName { get; set; } = null!;
-
-        [Required(ErrorMessage = "Password is required.")]
-        public string Password { get; set; } = null!;
-
+       
         [Required(ErrorMessage = "FullName is required.")]
         public string FullName { get; set; } = null!;
 

@@ -1,7 +1,10 @@
 using DeliveryAPI.Data;
+using DeliveryAPI.Data.RegAndAuth;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,7 +36,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Password.RequiredLength = 8;
 }).AddEntityFrameworkStores<ApplicationDbContext>();
 
-/*
+
 //Add Authentication services and middlewares.
 builder.Services.AddAuthentication(opt =>
 {
@@ -58,7 +61,7 @@ builder.Services.AddAuthentication(opt =>
 });
 
 builder.Services.AddScoped<JwtHandler>();
-*/
+
 
 var app = builder.Build();
 

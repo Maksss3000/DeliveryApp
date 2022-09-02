@@ -2,6 +2,7 @@
 using DeliveryAPI.Data.RegAndAuth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace DeliveryAPI.Controllers
 {
@@ -13,14 +14,16 @@ namespace DeliveryAPI.Controllers
         private readonly ApplicationDbContext _context;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<ApplicationUser> _userManager;
-
+        private readonly JwtHandler _jwtHandler;
         public AccountController(ApplicationDbContext context,
                                  RoleManager<IdentityRole> roleManager,
-                                 UserManager<ApplicationUser> userManager)
+                                 UserManager<ApplicationUser> userManager,
+                                 JwtHandler jwtHandler)
         {
             _context = context;
             _roleManager = roleManager;
             _userManager = userManager;
+            _jwtHandler = jwtHandler;
         }
 
         [HttpPost]
@@ -30,7 +33,7 @@ namespace DeliveryAPI.Controllers
             //Setup the default role name.
             string role_RegisteredUser = "RegisteredUser";
             bool roleExists;
-            RegistrationResult regRes = new RegistrationResult() { Success=false};
+            Response regRes = new Response() { Success=false};
             ApplicationUser user;
 
 
@@ -74,11 +77,37 @@ namespace DeliveryAPI.Controllers
 
             else
             {
-                regRes.Message = "User with same NickName already exists,please change it.";
+                regRes.Message = "User with same nick name already exists,please change it.";
                 return Conflict(regRes);
             }
 
             return Ok(regRes);
         }
+
+
+        [HttpPost]
+        [Route("login")]
+        public async Task<ActionResult> Login(Request loginReq)
+        {
+            var user = await _userManager.FindByNameAsync(loginReq.NickName);
+            if (user == null || !await _userManager.CheckPasswordAsync(user, loginReq.Password))
+            {
+                return Unauthorized(new Response()
+                {
+                    Success = false,
+                    Message = "Invalid Nick Name or Password"
+                });
+            }
+            var secToken = await _jwtHandler.GetTokenAsync(user);
+
+            var jwt = new JwtSecurityTokenHandler().WriteToken(secToken);
+            return Ok(new Response()
+            {
+                Success = true,
+                Message = "Login Successfull",
+                Token = jwt
+            });
+        }
+        
     }
 }

@@ -8,6 +8,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductAddComponent } from './products/product-add.component';
 
 import { RegistrationComponent } from './auth/registration/registration.component';
+import { LoginComponent } from './auth/login/login.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: "product", component: ProductAddComponent },
   { path: "product/:id", component: ProductAddComponent },
 
-  { path: "registration", component: RegistrationComponent }
+  { path: "registration", component: RegistrationComponent },
+  { path: "login", component: LoginComponent }
   
 ];
 
