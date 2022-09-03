@@ -122,15 +122,15 @@ namespace DeliveryAPI.Controllers
             }
 
             var product = await _context.Products.FindAsync(id);
+            var owner = await _context.Restaurants.FindAsync(product!.RestaurantId);
 
-           
-                return new ProductDTO
-                {
-                    Name = product!.Name,
-                    Price = product.Price,
-                    Description = product.Description,
-                    RestaurantId = product.RestaurantId
-
+            return new ProductDTO
+            {
+                Name = product!.Name,
+                Price = product.Price,
+                Description = product.Description,
+                RestaurantId = product.RestaurantId,
+                Owner = owner!.Owner
                 };
         }
 

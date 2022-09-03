@@ -15,5 +15,7 @@
 
         public string? RestaurantName { get; set; }
         public int RestaurantId { get; set; }
+
+        public string? Owner { get; set; }
     }
 }

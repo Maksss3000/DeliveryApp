@@ -32,7 +32,7 @@
 
           <div class="select_group">
             <select formControlName="restaurant" id="restaurant" [ngClass]="{'red':form.controls['restaurant'].errors?.['required']}">
-              <option disabled value="">Select Restaurant Category</option>
+              <option disabled value="">Select Restaurant</option>
               <option *ngFor="let rest of restaurants" [ngValue]="rest.id">
                 {{rest.name}}
               </option>

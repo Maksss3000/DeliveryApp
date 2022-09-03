@@ -6,4 +6,5 @@ export interface Product {
   description: string
   image: string
   restaurantName: string
+  owner: string
 }

@@ -23,13 +23,13 @@ img{
   top: 0;
   width: 30%;
   height: 150px;
-  //border: 1px solid white;
   background-color: hsl(152, 96%, 33%);//hsl(0, 0%, 100%);
   border-radius: 20px;
   text-align: center;
   font-size: 1.5em;
   transform: translateY(-100%);
-  transition: transform ease-in 0.5s;
+  opacity:0;
+  transition: transform ease-in 0.5s,opacity ease-in 0.7s;
 
   div {
     //   text-align: center;
@@ -51,6 +51,7 @@ img{
 
 .vis_success {
   transform: var(--transY);
+  opacity:1;
 }
 
 .form_rest_section {

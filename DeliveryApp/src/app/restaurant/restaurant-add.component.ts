@@ -32,7 +32,7 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
 
   restaurant?: Restaurant;
 
-  ownerName!: string;
+  ownerName?: string|null;
 
   //router!: Router;
 
@@ -50,8 +50,8 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
 
   ngOnInit(): void {
 
-    //will get this name from IdentityContext(user name).
-    this.ownerName = "maksss3000";
+    //will get this name from localStorage
+    this.ownerName = localStorage.getItem("owner");
    
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required, EmptyStringValidator.emptyString]),
@@ -79,14 +79,13 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
 
         if (this.restaurant) {
           this.title = "Edit";
-          console.log(this.restaurant);
           //If User is NOT owner of the specific restaurant
           //Redirecting him to another route.(Forbidden/your Restaurants..)
-          /*
+          
           if (this.restaurant.owner != this.ownerName) {
-            //Redirect.
+            this.router.navigate(['/']);
           }
-          */
+          
 
           //Setting to our form values from API.
           this.form.patchValue({
@@ -125,7 +124,7 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
     formData.append('imageFile', this.compressedImg);
     formData.append('name', this.form.controls['name'].value);
     formData.append('categoryId', this.form.controls['category'].value);
-    formData.append('owner', this.ownerName);
+    formData.append('owner', this.ownerName!);
     formData.append('image', this.uploadFile.name);
 
     /*

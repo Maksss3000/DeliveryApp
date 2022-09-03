@@ -30,7 +30,8 @@
             <label>Password</label>
             <input [ngClass]="{'red':form.controls['password'].errors?.['required']}" type="password" formControlName="password" required placeholder="Password" />
             <div class="error" [ngClass]="{'visible':(form.controls['password'].errors?.['required'] || this.form.controls['password'].errors?.['pattern'])}">
-              Please enter Correct Password.
+              Password must contain:<br />
+              min 8 chars,at least- 1 number,1 upper case,1 lower case,1 special character
             </div>
           </div>
 
@@ -55,8 +56,8 @@
                    placeholder="Please enter your Address" />
 
             <div class="error"
-                 [ngClass]="{'visible':form.controls['address'].errors?.['required'] ||this.form.controls['address'].errors?.['emptyString']}">
-              Please enter your Address.
+                 [ngClass]="{'visible':form.controls['address'].errors?.['required'] ||this.form.controls['address'].errors?.['emptyString']||this.form.controls['address'].errors?.['minlength']}">
+              Please enter your Address.(Min 8 chars)
             </div>
           </div>
 

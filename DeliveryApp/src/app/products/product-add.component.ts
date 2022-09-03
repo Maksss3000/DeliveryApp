@@ -22,7 +22,7 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
 
   id?: number;
 
-  ownerName!: string;
+  ownerName!: string|null;
 
   restaurants!: Restaurant[];
 
@@ -35,8 +35,8 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    //will get this name from IdentityContext(user name).
-    this.ownerName = "maksss3000";
+    //Will get this name from localStorage.
+    this.ownerName = localStorage.getItem("owner");
 
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(2), EmptyStringValidator.emptyString]),
@@ -53,7 +53,7 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
   //Loade all Restaurants of this owner.
   loadRestaurants() {
 
-    var params = new HttpParams().set('owner', this.ownerName);
+    var params = new HttpParams().set('owner', this.ownerName!);
 
     this.http.get<Restaurant[]>(environment.baseUrl + '/Delivery/restaurants', { params }).subscribe(result => {
       this.restaurants = result;
@@ -73,17 +73,17 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
       //Getting specific Product
       this.http.get<Product>(environment.baseUrl + '/Delivery/product/' + this.id).subscribe(result => {
         this.product = result;
-
+        
         if (this.product) {
           this.title = "Edit";
-          console.log(this.product);
-          //If User is NOT owner of the specific restaurant
+          //If User is NOT owner of this specific product
           //Redirecting him to another route.(Forbidden/your Restaurants..)
-          /*
-          if (this.restaurant.owner != this.ownerName) {
+
+          if (this.product.owner != this.ownerName) {
             //Redirect.
+            this.router.navigate(['/']);
           }
-          */
+          
 
           //Setting to our form values from API.
           this.form.patchValue({

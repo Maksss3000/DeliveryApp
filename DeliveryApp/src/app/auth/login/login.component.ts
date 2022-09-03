@@ -44,20 +44,23 @@ export class LoginComponent implements OnInit {
    // this.logReq = <Request>{};
     this.logReq.nickName = this.form.controls['nickName'].value;
     this.logReq.password = this.form.controls['password'].value;
-
+    
+    
     this.http.post<ResponseResult>(environment.baseUrl + '/Account/login', this.logReq).subscribe(result => {
-      this.success = true;
-      this.error = false;
       this.message = result.message;
+      this.error = false;
+      this.success = true; 
 
+      localStorage.setItem("token", result.token);
+      localStorage.setItem("owner", result.owner);
     }, error => {
 
       if (error.status == 401) {
-        this.error = true;
         this.message = error.error.message;
+        this.error = true;
       }
     })
-
+    
   }
 
 }
