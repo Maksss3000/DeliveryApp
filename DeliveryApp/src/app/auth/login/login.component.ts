@@ -28,9 +28,17 @@ export class LoginComponent implements OnInit {
 
   message: string = "";
 
-  constructor(private http: HttpClient) { }
+  returnUrl: string = "/";
+
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute,private route :Router) { }
 
   ngOnInit(): void {
+
+    //If user trying to get permission to some route and
+    //after authentication redirecting to this route.
+    //Or redirecting to base route.
+    var redirectionUrl = this.activatedRoute.snapshot.queryParamMap.get('returnUrl');
+    this.returnUrl = redirectionUrl ? redirectionUrl : "/";
 
     this.form = new FormGroup({
 
@@ -55,8 +63,9 @@ export class LoginComponent implements OnInit {
       localStorage.setItem("token", result.token);
       localStorage.setItem("owner", result.owner);
 
-
-      sessionStorage.setItem("key", "some value");
+      setTimeout(() => {
+        this.route.navigate([this.returnUrl]);
+      }, 2000); 
       
     }, error => {
 
