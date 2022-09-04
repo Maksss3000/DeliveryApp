@@ -9,17 +9,18 @@ import { ProductAddComponent } from './products/product-add.component';
 
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { LoginComponent } from './auth/login/login.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
   { path: "restaurants", component: RestaurantsComponent },
   { path: "restaurants/:id", component: RestaurantsComponent },
-  { path: "restaurant", component: RestaurantAddComponent },
-  { path: "restaurant/:id", component: RestaurantAddComponent },
+  { path: "restaurant", component: RestaurantAddComponent, canActivate: [AuthGuard] },
+  { path: "restaurant/:id", component: RestaurantAddComponent, canActivate: [AuthGuard] },
   { path: "categories", component: CategoriesComponent },
   { path: "products/:id", component: ProductsComponent },
-  { path: "product", component: ProductAddComponent },
-  { path: "product/:id", component: ProductAddComponent },
+  { path: "product", component: ProductAddComponent, canActivate: [AuthGuard] },
+  { path: "product/:id", component: ProductAddComponent, canActivate: [AuthGuard] },
 
   { path: "registration", component: RegistrationComponent },
   { path: "login", component: LoginComponent }

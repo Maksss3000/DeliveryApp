@@ -7,6 +7,7 @@ import { EmptyStringValidator } from '../../validators/emptyStringValidator';
 import { Request } from '../request';
 import { ResponseResult } from '../responseResult';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -53,6 +54,10 @@ export class LoginComponent implements OnInit {
 
       localStorage.setItem("token", result.token);
       localStorage.setItem("owner", result.owner);
+
+
+      sessionStorage.setItem("key", "some value");
+      
     }, error => {
 
       if (error.status == 401) {
@@ -63,4 +68,7 @@ export class LoginComponent implements OnInit {
     
   }
 
+  logout() {
+    localStorage.clear();
+  }
 }
