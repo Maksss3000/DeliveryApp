@@ -1,6 +1,7 @@
 using DeliveryAPI.Data;
 using DeliveryAPI.Data.Models;
 using DeliveryAPI.Data.ModelsDTOs;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -160,6 +161,7 @@ namespace DeliveryAPI.Controllers
         [HttpPost]
         [DisableRequestSizeLimit]
         [Route("addProd")]
+        [Authorize(Roles="RegisteredUser")]
         public async Task<IActionResult> AddProductAsync([FromForm] ProductDTO product)
         {
             try
@@ -193,6 +195,7 @@ namespace DeliveryAPI.Controllers
         [HttpPost]
         [DisableRequestSizeLimit]
         [Route("addRest")]
+        [Authorize(Roles = "RegisteredUser")]
         public async Task<IActionResult> AddRestaurantAsync([FromForm] RestaurantDTO restaurant)
         {
             try
@@ -220,9 +223,11 @@ namespace DeliveryAPI.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Upload failed: " + ex.Message);
             }
         }
+        
         [HttpPut]
         [DisableRequestSizeLimit]
         [Route("editProd")]
+        [Authorize(Roles="RegisteredUser")]
         public async Task<IActionResult> EditProductAsync([FromForm] ProductDTO product,int id)
         {
             var oldProd = await _context.Products.FindAsync(id);
@@ -253,6 +258,7 @@ namespace DeliveryAPI.Controllers
         [HttpPut]
         [DisableRequestSizeLimit]
         [Route("editRest")]
+        [Authorize(Roles="RegisteredUser")]
         public async Task<IActionResult> EditRestaurantAsync([FromForm] RestaurantDTO restaurant,int id)
         {
             var oldRest = await _context.Restaurants.FindAsync(id);
