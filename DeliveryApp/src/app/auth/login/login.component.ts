@@ -58,11 +58,10 @@ export class LoginComponent implements OnInit {
     this.http.post<ResponseResult>(environment.baseUrl + '/Account/login', this.logReq).subscribe(result => {
       this.message = result.message;
       this.error = false;
-      this.success = true; 
-
+      this.success = true;
       localStorage.setItem("token", result.token);
       localStorage.setItem("owner", result.owner);
-
+       
       setTimeout(() => {
         this.route.navigate([this.returnUrl]);
       }, 2000); 

@@ -16,7 +16,7 @@ namespace DeliveryAPI.Data.ModelsDTOs
 
         public int Votes { get; set; } = 0;
 
-        public string Owner { get; set; } = null!;
+        public string Owner { get; set; } = "";
 
         public Category? Category { get; set; } = null!;
 

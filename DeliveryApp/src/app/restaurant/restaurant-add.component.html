@@ -13,15 +13,13 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <div class="input_group">
             <label>Name</label>
-            <input 
-                   formControlName="name"
+            <input formControlName="name"
                    required
-                   [ngClass]="{'red':form.controls['name'].errors?.['required']}"                                                                                               
+                   [ngClass]="{'red':form.controls['name'].errors?.['required']}"
                    placeholder="Please enter a restaurant name" />
-                   
+
             <div class="error"
-                 [ngClass]="{'visible':form.controls['name'].errors?.['required'] ||this.form.controls['name'].errors?.['emptyString']}"                                                                                                    
-                 >
+                 [ngClass]="{'visible':form.controls['name'].errors?.['required'] ||this.form.controls['name'].errors?.['emptyString']}">
               Please enter restaurant name.
             </div>
           </div>
@@ -37,11 +35,8 @@
               Please select a Category.
             </div>
           </div>
+ 
 
-          <input
-                 formControlName="owner"
-                 hidden
-                 required />
           <div class="file_group">
             <label for="image">Image</label>
 
@@ -53,12 +48,12 @@
                      (change)="upload($any($event.target).files)" />
             </div>
             <div class="error"
-                [ngClass]="{'visible':this.form.controls['image'].errors?.['required']}">
+                 [ngClass]="{'visible':this.form.controls['image'].errors?.['required']}">
               Please select Image
             </div>
           </div>
 
-          <button class="submit_btn"  type="submit" [disabled]="!form.valid">
+          <button class="submit_btn" type="submit" [disabled]="!form.valid">
             {{title}}
           </button>
         </form>

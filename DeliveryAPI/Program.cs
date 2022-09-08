@@ -1,6 +1,7 @@
 using DeliveryAPI.Data;
 using DeliveryAPI.Data.RegAndAuth;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
@@ -60,6 +61,20 @@ builder.Services.AddAuthentication(opt =>
     };
 });
 
+//Added New.
+builder.Services.AddHttpClient();
+
+//Added New.
+//Adding Authorization.
+builder.Services.AddAuthorization(options =>
+    options.AddPolicy("MustBeRestaurantOwner", policy =>
+              policy.Requirements.Add(new MustBeOwnerRequirement())));
+builder.Services.AddScoped<IAuthorizationHandler, MustBeOwnerHandler>();
+
+//Added New.
+//Using to access request information.
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddScoped<JwtHandler>();
 
 
@@ -73,7 +88,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 //To get Static files
 //As example from wwwroot folder (images)
  app.UseStaticFiles();

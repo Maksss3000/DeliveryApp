@@ -52,12 +52,10 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
 
     //will get this name from localStorage
     this.ownerName = localStorage.getItem("owner");
-   
     this.form = new FormGroup({
       name: new FormControl('', [Validators.required, EmptyStringValidator.emptyString]),
       category: new FormControl('', Validators.required),
       image: new FormControl('', Validators.required),
-      owner: new FormControl(this.ownerName, Validators.required)
     });
 
     this.loadCategories();
@@ -91,7 +89,7 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
           this.form.patchValue({
             name: result.name,
             category: result.categoryId,
-            owner: result.owner
+            //owner: result.owner
           });
         }
         else {
@@ -124,7 +122,6 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
     formData.append('imageFile', this.compressedImg);
     formData.append('name', this.form.controls['name'].value);
     formData.append('categoryId', this.form.controls['category'].value);
-    formData.append('owner', this.ownerName!);
     formData.append('image', this.uploadFile.name);
 
     /*
@@ -138,7 +135,14 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
       this.http.put<Restaurant>(environment.baseUrl + '/Delivery/editRest', formData, { params }).subscribe(result => {
 
         this.redirect("products", this.id);
-      }, error => console.error(error));
+      }, error => {
+        if (error.status == 403) {
+          localStorage.clear();
+          this.router.navigate(['/login']);
+         // this.message = error.error.message;
+          //this.error = true;
+        }
+      });
     }
 
     //Add Restaurant

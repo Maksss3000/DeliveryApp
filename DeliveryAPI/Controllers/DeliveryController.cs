@@ -4,6 +4,7 @@ using DeliveryAPI.Data.ModelsDTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace DeliveryAPI.Controllers
 {
@@ -21,11 +22,17 @@ namespace DeliveryAPI.Controllers
 
         private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public DeliveryController(ILogger<DeliveryController> logger,ApplicationDbContext context, IWebHostEnvironment hostingEnvironment)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        //private readonly AuthorizationHandlerContext _ctx;
+        public DeliveryController(ILogger<DeliveryController> logger,ApplicationDbContext context, IWebHostEnvironment hostingEnvironment,
+           IHttpContextAccessor httpContextAccessor)
         {
             _logger = logger;
             _context = context;
             _hostingEnvironment = hostingEnvironment;
+
+            _httpContextAccessor = httpContextAccessor;
+           
         }
         [HttpGet]
         [Route("categories")]
@@ -200,18 +207,25 @@ namespace DeliveryAPI.Controllers
         {
             try
             {
+               
                 //Save Image.
                 string webRootPath = _hostingEnvironment.WebRootPath;
                 string folder = "Restaurants";
                 await FileSaver.SaveFileAsync(webRootPath,folder,restaurant.ImageFile);
-              
-              
+
+                var userName = _httpContextAccessor.HttpContext!.User.Identity!.Name;
+                string owner = userName!.ToString();
+                if (string.IsNullOrEmpty(owner))
+                {
+                    return Unauthorized();
+                }
+
                 await _context.Restaurants.AddAsync(new Restaurant
                 {
                     Image=restaurant.Image,
                     CategoryId=restaurant.CategoryId,
                     Name=restaurant.Name,
-                    Owner=restaurant.Owner
+                    Owner=owner
 
                 });
                 await _context.SaveChangesAsync();
@@ -230,6 +244,8 @@ namespace DeliveryAPI.Controllers
         [Authorize(Roles="RegisteredUser")]
         public async Task<IActionResult> EditProductAsync([FromForm] ProductDTO product,int id)
         {
+ 
+            
             var oldProd = await _context.Products.FindAsync(id);
             if (oldProd != null)
             {
@@ -258,16 +274,20 @@ namespace DeliveryAPI.Controllers
         [HttpPut]
         [DisableRequestSizeLimit]
         [Route("editRest")]
-        [Authorize(Roles="RegisteredUser")]
+        [Authorize(Roles="RegisteredUser", Policy = "MustBeRestaurantOwner")]
         public async Task<IActionResult> EditRestaurantAsync([FromForm] RestaurantDTO restaurant,int id)
         {
+
+         //   string owner = _ctx.User.FindFirst(ClaimTypes.Name)!.Value;
+            //var quer = _httpContextAccessor.HttpContext;
+
             var oldRest = await _context.Restaurants.FindAsync(id);
             if (oldRest != null)
             {
                 oldRest.Name = restaurant.Name;
                 oldRest.CategoryId = restaurant.CategoryId;
                 oldRest.Image = restaurant.Image;
-                oldRest.Owner = restaurant.Owner;
+               // oldRest.Owner = restaurant.Owner;
 
                 await _context.SaveChangesAsync();
 
@@ -280,7 +300,8 @@ namespace DeliveryAPI.Controllers
 
             else
             {
-                return BadRequest();
+                return NotFound();
+                //return BadRequest();
             }
             //await _context.Restaurants.Update(restaurant);
         }
