@@ -76,11 +76,16 @@ namespace DeliveryAPI.Controllers
 
         
         [HttpGet]
-        [Route("restaurants")]
-        public async Task<ActionResult<IEnumerable<Restaurant>>> GetRestaurantsByOwner(string owner="")
+        [Route("ownerRestaurants")]
+        public async Task<ActionResult<IEnumerable<Restaurant>>> GetRestaurantsByOwner()
         {
-           
-         return await _context.Restaurants.AsNoTracking().Where(r => r.Owner == owner).ToListAsync();
+            var userName = _httpContextAccessor.HttpContext!.User.Identity!.Name;
+            string owner = userName!.ToString();
+            if (string.IsNullOrEmpty(owner))
+            {
+                return Unauthorized();
+            }
+            return await _context.Restaurants.AsNoTracking().Where(r => r.Owner == owner).ToListAsync();
             
         }
         [HttpGet]
@@ -241,7 +246,7 @@ namespace DeliveryAPI.Controllers
         [HttpPut]
         [DisableRequestSizeLimit]
         [Route("editProd")]
-        [Authorize(Roles="RegisteredUser")]
+        [Authorize(Roles="RegisteredUser", Policy = "MustBeRestaurantOwner")]
         public async Task<IActionResult> EditProductAsync([FromForm] ProductDTO product,int id)
         {
  
@@ -278,17 +283,13 @@ namespace DeliveryAPI.Controllers
         public async Task<IActionResult> EditRestaurantAsync([FromForm] RestaurantDTO restaurant,int id)
         {
 
-         //   string owner = _ctx.User.FindFirst(ClaimTypes.Name)!.Value;
-            //var quer = _httpContextAccessor.HttpContext;
-
             var oldRest = await _context.Restaurants.FindAsync(id);
             if (oldRest != null)
             {
                 oldRest.Name = restaurant.Name;
                 oldRest.CategoryId = restaurant.CategoryId;
                 oldRest.Image = restaurant.Image;
-               // oldRest.Owner = restaurant.Owner;
-
+               
                 await _context.SaveChangesAsync();
 
                 //Save Image.

@@ -89,7 +89,6 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
           this.form.patchValue({
             name: result.name,
             category: result.categoryId,
-            //owner: result.owner
           });
         }
         else {
@@ -131,7 +130,7 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
 
     //Edit Restaurants
     if (this.id) {
-      var params = new HttpParams().set("id", this.id);
+      var params = new HttpParams().set("id", this.id).set("securityId",this.id);
       this.http.put<Restaurant>(environment.baseUrl + '/Delivery/editRest', formData, { params }).subscribe(result => {
 
         this.redirect("products", this.id);

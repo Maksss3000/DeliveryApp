@@ -20,17 +20,16 @@ namespace DeliveryAPI.Data.RegAndAuth
                                                           MustBeOwnerRequirement requirement
                                                           )
         {
-            //Getting query parameter id value.
-            var requestId = _httpContextAccessor.HttpContext!.Request.Query["id"];
-           
-            int requestIdAsInt = Convert.ToInt32(requestId);
+            //Getting query parameter securityId value.
+            var securityId= _httpContextAccessor.HttpContext!.Request.Query["securityId"]; 
+            int securityIdAsInt = Convert.ToInt32(securityId);
 
             //Getting auth user nick name.
             string owner = context.User.FindFirst(ClaimTypes.Name)!.Value;
             //OR as alternative
             //var userName = _httpContextAccessor.HttpContext.User.Identity.Name;
 
-            var restaurant = await _dbContext.Restaurants.FindAsync(requestIdAsInt);
+            var restaurant = await _dbContext.Restaurants.FindAsync(securityIdAsInt);
 
             if (restaurant == null)
             {

@@ -28,6 +28,8 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
 
   product?: Product;
 
+  securityId?: number;
+
   constructor(private http: HttpClient, imageCompress: NgxImageCompressService,
     private activatedRoute: ActivatedRoute, private router:Router) {
     super(imageCompress);
@@ -53,9 +55,7 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
   //Loade all Restaurants of this owner.
   loadRestaurants() {
 
-    var params = new HttpParams().set('owner', this.ownerName!);
-
-    this.http.get<Restaurant[]>(environment.baseUrl + '/Delivery/restaurants', { params }).subscribe(result => {
+    this.http.get<Restaurant[]>(environment.baseUrl + '/Delivery/ownerRestaurants').subscribe(result => {
       this.restaurants = result;
     }, error => console.error(error));
   }
@@ -73,7 +73,7 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
       //Getting specific Product
       this.http.get<Product>(environment.baseUrl + '/Delivery/product/' + this.id).subscribe(result => {
         this.product = result;
-        
+        this.securityId = result.restaurantId;
         if (this.product) {
           this.title = "Edit";
           //If User is NOT owner of this specific product
@@ -91,7 +91,6 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
             description: result.description,
             price: result.price,
             restaurant: result.restaurantId
-            
           });
         }
         else {
@@ -123,12 +122,17 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
 
     //Edit Product
     if (this.id) {
-      var params = new HttpParams().set("id", this.id);
+      var params = new HttpParams().set("id", this.id).set("securityId", this.securityId!);
 
       this.http.put<Product>(environment.baseUrl + '/Delivery/editProd', formData, { params }).subscribe(result => {
         this.redirect(result);
       
-      }, error => console.error(error));
+      }, error => {
+        if (error.status == 403) {
+          localStorage.clear();
+          this.router.navigate(['/login']);
+        }
+      });
     }
     //Add Product
     else {
