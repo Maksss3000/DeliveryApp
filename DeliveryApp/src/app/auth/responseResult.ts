@@ -4,4 +4,5 @@ export interface ResponseResult {
   message: string;
   token: string;
   owner: string;
+  fullName: string;
 }

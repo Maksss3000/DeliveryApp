@@ -11,6 +11,8 @@ import { RegistrationComponent } from './auth/registration/registration.componen
 import { LoginComponent } from './auth/login/login.component';
 import { AuthGuard } from './auth/auth.guard';
 
+import { UserPanelComponent } from './user-panel/user-panel.component';
+
 const routes: Routes = [
   { path: "", component: HomeComponent, pathMatch: "full" },
   { path: "restaurants", component: RestaurantsComponent },
@@ -23,7 +25,9 @@ const routes: Routes = [
   { path: "product/:id", component: ProductAddComponent, canActivate: [AuthGuard] },
 
   { path: "registration", component: RegistrationComponent },
-  { path: "login", component: LoginComponent }
+  { path: "login", component: LoginComponent },
+
+  { path: "panel", component: UserPanelComponent, canActivate:[AuthGuard] }
   
 ];
 

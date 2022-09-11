@@ -1,0 +1,170 @@
+@import '../../sass/_mixins.scss';
+
+.dashboard_section {
+  padding-bottom: 10px;
+
+  .container {
+    @include flex(space-between, flex-start);
+    padding: 0 10px;
+    margin: 0;
+
+    .main {
+      flex: 0 1 70%;
+
+      .user_name {
+        font-size: 1.5em;
+      }
+
+      .main_content {
+        display: inline-block;
+        margin-top: 50px;
+        text-align: center;
+        box-shadow: 0px 10px 10px 1px hsla(0%, 0%, 0%, 0.19);
+        //box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px,
+        //rgba(0, 0, 0, 0.23) 0px 6px 6px;
+        border-radius: 30px;
+        padding: 20px;
+
+        .table_title {
+          font-size: 1.5em;
+          text-align: left;
+          padding-left: 1em;
+        }
+
+        .table_container {
+          overflow: auto;
+          position: relative;
+
+          /*
+          &:hover {
+            .product_table {
+              --delay: 1s;
+              transform: translateY(0);
+            }
+
+            .rest_table {
+              --delay: 0s;
+              transform: translateY(-250%);
+              opacity: 0;
+            }
+          }
+              */
+        }
+
+        .product_table {
+          position: absolute;
+          --delay: 0s;
+          transition: ease-in transform 0.5s var(--delay);
+          transform: translateY(-250%);
+        }
+
+        .rest_table {
+          --delay: 1s;
+          transition: ease-in transform 0.5s var(--delay), ease-in opacity 0.3s;
+        }
+
+        table {
+          padding-top: 1em;
+        }
+
+        tr {
+          &:nth-child(even) {
+            background-color: #f5f5f5;
+          }
+
+          box-shadow: 0 1px 0 0 hsla(0, 0%, 93%, 1);
+          line-height: 2em;
+
+          th {
+            //color: hsla(229, 8%, 73%, 1);
+            color: black;
+            padding-left: 2em;
+          }
+
+          td {
+            color: hsla(213, 10%, 18%, 1);
+            padding-left: 2em;
+          }
+
+          .button {
+            border-radius: 4px;
+            text-decoration: none;
+            padding: 4px;
+            color: white;
+
+            &.warning {
+              border: 1px solid hsl(36, 100%, 50%);
+              background-color: hsl(36, 100%, 50%);
+
+              &:hover {
+                background: hsl(36, 100%, 45%);
+              }
+            }
+
+            &.danger {
+              //color: hsla(0, 96%, 45%, 1);
+              border: 1px solid hsla(0, 96%, 55%, 1);
+              background-color: hsla(0, 96%, 55%, 1);
+
+              &:hover {
+                background: hsla(0, 96%, 45%, 1);
+              }
+            }
+
+            &.info {
+              cursor: pointer;
+              background: hsl(207, 90%, 54%);
+              border: 1px solid hsl(207, 90%, 54%);
+
+              &:hover {
+                background: hsl(207, 90%, 44%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  nav {
+    background: hsla(253, 81%, 56%, 1);
+    flex: 0 1 20%;
+    border-radius: 50px;
+  }
+
+  .dashboard_nav {
+    @include flex(space-evenly);
+    flex-direction: column;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 80vh;
+
+    li {
+      width: 80%;
+      text-align: center;
+      transition: background-color ease-in 0.3s;
+      border-radius: 20px;
+
+      button {
+        border: none; /* Remove borders */
+        cursor: pointer; /* Add a pointer cursor on mouse-over */
+        background:none;
+      }
+
+      a, button {
+        font-size: 1.5em;
+        text-decoration: none;
+        color: hsla(0, 0%, 100%, 1);
+      }
+
+      &:hover {
+        background-color: hsla(0, 0%, 100%, 1);
+
+        a ,button{
+          color: hsla(253, 81%, 56%, 1);
+        }
+      }
+    }
+  }
+}

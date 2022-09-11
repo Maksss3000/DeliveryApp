@@ -20,6 +20,7 @@ import { ProductAddComponent } from './products/product-add.component';
 import { RegistrationComponent } from './auth/registration/registration.component';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { UserPanelComponent } from './user-panel/user-panel.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AuthInterceptor } from './auth/auth.interceptor';
     NoDataComponent,
     ProductAddComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    UserPanelComponent
   ],
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule, FormsModule, ReactiveFormsModule

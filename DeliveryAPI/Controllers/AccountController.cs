@@ -106,9 +106,10 @@ namespace DeliveryAPI.Controllers
                 Success = true,
                 Message = "Login Successfull",
                 Token = jwt,
-                Owner = user.UserName
+                Owner = user.UserName,
+                FullName=user.FullName
 
-            }) ;
+            });
         }
         
     }

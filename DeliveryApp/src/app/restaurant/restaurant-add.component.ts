@@ -27,21 +27,9 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
 
   categories!: Category[];
 
-  //the form model
-  //form!: FormGroup;
-
   restaurant?: Restaurant;
 
   ownerName?: string|null;
-
-  //router!: Router;
-
-  //uploadFile!: File;
-
-  //compressedImg!: File;
-
-  //localUrl!: string;
-  //localCompressedURl!: string;
 
   constructor(private http: HttpClient,
     private activatedRoute: ActivatedRoute, imageCompress: NgxImageCompressService,private router:Router) {
@@ -77,11 +65,11 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
 
         if (this.restaurant) {
           this.title = "Edit";
+
           //If User is NOT owner of the specific restaurant
           //Redirecting him to another route.(Forbidden/your Restaurants..)
-          
           if (this.restaurant.owner != this.ownerName) {
-            this.router.navigate(['/']);
+            this.router.navigate(['/panel']);
           }
           
 
@@ -92,17 +80,11 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
           });
         }
         else {
-          console.log("Redirect , because we don`t have this restaurant in DB");
+          this.router.navigate(['/panel']);
         }
       
       }, error => console.log(error));
 
-      //console.log("Restaurant 3",this.restaurant);
-      //!! update the form with restaurant values
-      //restaurant value properties have the same name
-      //as FormControl input names
-      //this.form.patchValue(this.restaurant!);
-     // this.title = "Edit";
     }
   }
   loadCategories() {
@@ -123,17 +105,12 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
     formData.append('categoryId', this.form.controls['category'].value);
     formData.append('image', this.uploadFile.name);
 
-    /*
-    console.log("Not Compressed Upload File", this.uploadFile);
-    console.log("Compressed", this.compressedImg);
-    */
-
     //Edit Restaurants
     if (this.id) {
       var params = new HttpParams().set("id", this.id).set("securityId",this.id);
       this.http.put<Restaurant>(environment.baseUrl + '/Delivery/editRest', formData, { params }).subscribe(result => {
 
-        this.redirect("products", this.id);
+        this.redirect("panel");
       }, error => {
         if (error.status == 403) {
           localStorage.clear();
@@ -146,24 +123,18 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
 
     //Add Restaurant
     else {
-     
       this.http.post<Restaurant>(environment.baseUrl + '/Delivery/addRest', formData).subscribe(result => {
-        this.redirect("restaurants");
+        this.redirect("panel");
       }, error => console.error(error));
       
     }
    
   }
 
-  redirect(path:string,param:number=0) {
+  redirect(path:string) {
     this.success = true;
     setTimeout(() => {
-      if (param == 0) {
         this.router.navigate(['/' + path]);
-      }
-      else {
-        this.router.navigate(['/' + path, param]);
-      }
     }, 2000); 
   }
 

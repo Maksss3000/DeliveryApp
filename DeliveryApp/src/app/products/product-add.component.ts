@@ -76,12 +76,11 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
         this.securityId = result.restaurantId;
         if (this.product) {
           this.title = "Edit";
+
           //If User is NOT owner of this specific product
           //Redirecting him to another route.(Forbidden/your Restaurants..)
-
           if (this.product.owner != this.ownerName) {
-            //Redirect.
-            this.router.navigate(['/']);
+            this.router.navigate(['/panel']);
           }
           
 
@@ -98,13 +97,6 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
         }
 
       }, error => console.log(error));
-
-      //console.log("Restaurant 3",this.restaurant);
-      //!! update the form with restaurant values
-      //restaurant value properties have the same name
-      //as FormControl input names
-      //this.form.patchValue(this.restaurant!);
-      // this.title = "Edit";
     }
   }
 
@@ -148,7 +140,7 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
   redirect(result: Product) {
     this.success = true;
     setTimeout(() => {
-      this.router.navigate(['/products', result.restaurantId]);
+      this.router.navigate(['/panel']);
     }, 2000);
   }
 

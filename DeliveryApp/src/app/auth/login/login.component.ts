@@ -61,6 +61,8 @@ export class LoginComponent implements OnInit {
       this.success = true;
       localStorage.setItem("token", result.token);
       localStorage.setItem("owner", result.owner);
+      localStorage.setItem("name", result.fullName);
+      console.log(result.fullName);
        
       setTimeout(() => {
         this.route.navigate([this.returnUrl]);
