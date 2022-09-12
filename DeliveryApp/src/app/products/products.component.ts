@@ -3,6 +3,7 @@ import { Product } from './product';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { ActivatedRoute } from "@angular/router";
+import { ProductService } from './product.service';
 
 @Component({
   selector: 'app-products',
@@ -11,7 +12,8 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class ProductsComponent implements OnInit {
 
- constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) { }
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute,
+              private prodServ: ProductService) { }
 
   restId?: number;
   products!: Product[];
@@ -28,7 +30,7 @@ export class ProductsComponent implements OnInit {
     var id = this.activatedRoute.snapshot.paramMap.get('id');
     this.restId = id ? +id : 0;
 
-    this.http.get<Product[]>(environment.baseUrl + '/Delivery/products/' + this.restId).subscribe(result => {
+    this.prodServ.loadRestaurantProducts(this.restId).subscribe(result => {
       if (result.length == 0) {
         this.noData = true;
       }

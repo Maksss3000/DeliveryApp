@@ -32,9 +32,12 @@
           </div>
         </div>
 
-        <button class="submit_btn" type="submit" [disabled]="!form.valid">
+        <button class="submit_btn log_in" type="submit" [disabled]="!form.valid">
           {{title}}
         </button>
+        <a class="submit_btn" [routerLink]="['/registration']">
+          Registration
+        </a>
       </form>
     </div>
   </div>

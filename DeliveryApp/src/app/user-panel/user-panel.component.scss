@@ -3,6 +3,48 @@
 .dashboard_section {
   padding-bottom: 10px;
 
+  .button {
+    border-radius: 4px;
+    text-decoration: none;
+    padding: 4px;
+    color: white;
+
+    &.warning {
+      border: 1px solid hsl(36, 100%, 50%);
+      background-color: hsl(36, 100%, 50%);
+
+      &:hover {
+        background: hsl(36, 100%, 45%);
+      }
+    }
+
+    &.danger {
+      //color: hsla(0, 96%, 45%, 1);
+      border: 1px solid hsla(0, 96%, 55%, 1);
+      background-color: hsla(0, 96%, 55%, 1);
+
+      &:hover {
+        background: hsla(0, 96%, 45%, 1);
+      }
+    }
+
+    &.info {
+      cursor: pointer;
+      background: hsl(207, 90%, 54%);
+      border: 1px solid hsl(207, 90%, 54%);
+
+      &:hover {
+        background: hsl(207, 90%, 44%);
+      }
+
+      &.back{
+          vertical-align:bottom;
+          margin-left:1.5em;
+      }
+    }
+  }
+
+
   .container {
     @include flex(space-between, flex-start);
     padding: 0 10px;
@@ -35,6 +77,50 @@
           overflow: auto;
           position: relative;
 
+
+
+          .product_table {
+            position: absolute;
+            --delay: 0s;
+            transition: ease-in transform 0.5s var(--delay);
+            transform: translateY(-250%);
+            //.vis {
+            //--delay: 1s;
+            //transform: translateY(0);
+            //}
+          }
+
+          .visible {
+            --delay: 1s;
+            transform: translateY(0);
+          }
+
+          .rest_table {
+            --delay: 1s;
+            transition: ease-in transform 0.5s var(--delay), ease-in opacity 0.3s;
+            //.visible {
+            //--delay: 0s;
+            //transform: translateY(-250%);
+            //opacity: 0;
+            //}
+          }
+
+          .unvisible {
+            --delay: 0s;
+            transform: translateY(-250%);
+            opacity: 0;
+            //.product_table {
+            //--delay: 1s;
+            //transform: translateY(0);
+            //}
+            /*
+            .rest_table {
+              --delay: 0s;
+              transform: translateY(-250%);
+              opacity: 0;
+            }
+                */
+          }
           /*
           &:hover {
             .product_table {
@@ -51,17 +137,7 @@
               */
         }
 
-        .product_table {
-          position: absolute;
-          --delay: 0s;
-          transition: ease-in transform 0.5s var(--delay);
-          transform: translateY(-250%);
-        }
 
-        .rest_table {
-          --delay: 1s;
-          transition: ease-in transform 0.5s var(--delay), ease-in opacity 0.3s;
-        }
 
         table {
           padding-top: 1em;
@@ -84,42 +160,6 @@
           td {
             color: hsla(213, 10%, 18%, 1);
             padding-left: 2em;
-          }
-
-          .button {
-            border-radius: 4px;
-            text-decoration: none;
-            padding: 4px;
-            color: white;
-
-            &.warning {
-              border: 1px solid hsl(36, 100%, 50%);
-              background-color: hsl(36, 100%, 50%);
-
-              &:hover {
-                background: hsl(36, 100%, 45%);
-              }
-            }
-
-            &.danger {
-              //color: hsla(0, 96%, 45%, 1);
-              border: 1px solid hsla(0, 96%, 55%, 1);
-              background-color: hsla(0, 96%, 55%, 1);
-
-              &:hover {
-                background: hsla(0, 96%, 45%, 1);
-              }
-            }
-
-            &.info {
-              cursor: pointer;
-              background: hsl(207, 90%, 54%);
-              border: 1px solid hsl(207, 90%, 54%);
-
-              &:hover {
-                background: hsl(207, 90%, 44%);
-              }
-            }
           }
         }
       }
@@ -149,7 +189,7 @@
       button {
         border: none; /* Remove borders */
         cursor: pointer; /* Add a pointer cursor on mouse-over */
-        background:none;
+        background: none;
       }
 
       a, button {
@@ -161,7 +201,7 @@
       &:hover {
         background-color: hsla(0, 0%, 100%, 1);
 
-        a ,button{
+        a, button {
           color: hsla(253, 81%, 56%, 1);
         }
       }

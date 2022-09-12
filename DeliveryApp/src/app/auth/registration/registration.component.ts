@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators, AbstractControl, AsyncValidatorFn }
 import { EmptyStringValidator } from '../../validators/emptyStringValidator';
 import { Request } from '../request';
 import { ResponseResult } from '../responseResult';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -26,7 +27,8 @@ export class RegistrationComponent implements OnInit {
   sameName: boolean = false;
   errM: string = "";
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private route: Router,
+              private authServ: AuthService) {
     
   }
 
@@ -55,12 +57,13 @@ export class RegistrationComponent implements OnInit {
     
    // this.regReq = this.form.getRawValue();
     //console.log(this.regReq);
-    
-    this.http.post<ResponseResult>(environment.baseUrl + '/Account/registration', this.regReq).subscribe(result => {
+
+    this.authServ.ragistration(this.regReq).subscribe(result => {
       this.success = true;
       this.sameName = false;
       //Redirecting to Log-In Page.
-      console.log(result);
+      this.route.navigate(['/panel']);
+      //console.log(result);
     }, error => {
       if (error.status == 409) {
         this.sameName = true;

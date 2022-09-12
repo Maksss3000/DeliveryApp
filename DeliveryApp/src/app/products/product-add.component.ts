@@ -9,6 +9,8 @@ import { Restaurant } from '../restaurants/restaurant';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { BaseFormComponent } from '../base-form.component';
 import { Product } from './product';
+import { ProductService } from './product.service';
+import { RestaurantService } from '../restaurant/restaurant.service';
 
 @Component({
   selector: 'app-product-add',
@@ -31,7 +33,8 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
   securityId?: number;
 
   constructor(private http: HttpClient, imageCompress: NgxImageCompressService,
-    private activatedRoute: ActivatedRoute, private router:Router) {
+    private activatedRoute: ActivatedRoute, private router: Router,
+    private productServ: ProductService, private restServ: RestaurantService) {
     super(imageCompress);
   }
 
@@ -54,8 +57,7 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
 
   //Loade all Restaurants of this owner.
   loadRestaurants() {
-
-    this.http.get<Restaurant[]>(environment.baseUrl + '/Delivery/ownerRestaurants').subscribe(result => {
+    this.restServ.loadOwnerRestaurants().subscribe(result => {
       this.restaurants = result;
     }, error => console.error(error));
   }
@@ -71,7 +73,7 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
     //Edit Mode
     if (this.id) {
       //Getting specific Product
-      this.http.get<Product>(environment.baseUrl + '/Delivery/product/' + this.id).subscribe(result => {
+      this.productServ.getProduct(this.id).subscribe(result => {
         this.product = result;
         this.securityId = result.restaurantId;
         if (this.product) {
@@ -115,9 +117,9 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
     //Edit Product
     if (this.id) {
       var params = new HttpParams().set("id", this.id).set("securityId", this.securityId!);
-
-      this.http.put<Product>(environment.baseUrl + '/Delivery/editProd', formData, { params }).subscribe(result => {
-        this.redirect(result);
+      
+      this.productServ.updateProduct(formData, params).subscribe(result => {
+        this.redirect();
       
       }, error => {
         if (error.status == 403) {
@@ -128,16 +130,16 @@ export class ProductAddComponent extends BaseFormComponent implements OnInit {
     }
     //Add Product
     else {
-      
-      this.http.post<Product>(environment.baseUrl + '/Delivery/addProd', formData).subscribe(result => {
-        this.redirect(result);
+   
+      this.productServ.addProduct(formData).subscribe(result => {
+        this.redirect();
       }, error => console.error(error))
       
     }
 
   }
 
-  redirect(result: Product) {
+  redirect() {
     this.success = true;
     setTimeout(() => {
       this.router.navigate(['/panel']);

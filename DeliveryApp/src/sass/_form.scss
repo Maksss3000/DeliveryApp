@@ -178,6 +178,15 @@ img{
       */
     }
 
+    .log_in, a {
+      width: auto;
+    }
+
+    a {
+      margin-left: 1.5em;
+      text-decoration: none;
+    }
+
     button:disabled {
       background-color: hsla(0, 0%, 80%,0.8);
       color: #666666;

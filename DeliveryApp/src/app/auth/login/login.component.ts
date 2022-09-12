@@ -6,6 +6,7 @@ import { FormGroup, FormControl, Validators, AbstractControl, AsyncValidatorFn }
 import { EmptyStringValidator } from '../../validators/emptyStringValidator';
 import { Request } from '../request';
 import { ResponseResult } from '../responseResult';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class LoginComponent implements OnInit {
 
   returnUrl: string = "/";
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute,private route :Router) { }
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute,
+    private route: Router, private authServ: AuthService) { }
 
   ngOnInit(): void {
 
@@ -53,17 +55,12 @@ export class LoginComponent implements OnInit {
    // this.logReq = <Request>{};
     this.logReq.nickName = this.form.controls['nickName'].value;
     this.logReq.password = this.form.controls['password'].value;
-    
-    
-    this.http.post<ResponseResult>(environment.baseUrl + '/Account/login', this.logReq).subscribe(result => {
+
+    this.authServ.logIn(this.logReq).subscribe(result => {
       this.message = result.message;
       this.error = false;
       this.success = true;
-      localStorage.setItem("token", result.token);
-      localStorage.setItem("owner", result.owner);
-      localStorage.setItem("name", result.fullName);
-      console.log(result.fullName);
-       
+      this.authServ.initLocalStorage(result.token, result.owner, result.fullName);
       setTimeout(() => {
         this.route.navigate([this.returnUrl]);
       }, 2000); 

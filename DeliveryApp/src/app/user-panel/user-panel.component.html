@@ -2,16 +2,20 @@
   <div class="container">
     <nav>
       <ul class="dashboard_nav">
-        <li><button>Restaurants</button></li>
+        <li><button (click)="getOwnerRestaurants()">Restaurants</button></li>
         <li><a [routerLink]="['/restaurant']">Add Restaurant</a></li>
         <li><a [routerLink]="['/product']">Add Product</a></li>
-        <li><button>Log-Out</button></li>
+        <li><button (click)="logout()">Log-Out</button></li>
       </ul>
     </nav>
     <div class="main">
       <div class="user_name">Hello {{name}} 👋🏼</div>
       <div class="main_content">
-        <div class="table_title" *ngIf="restaurants else noRest">Restaurants</div>
+        <div class="table_title" *ngIf="restaurants else noRest">
+          {{title}}
+          <button class="button info back" (click)="getOwnerRestaurants()" *ngIf="status">Back</button>
+        </div>
+       
         <ng-template class="table_title" #noRest>
           <div class="table_title">
             You still don`t have any restaurants.<br>
@@ -19,56 +23,22 @@
           </div>
         </ng-template>
         <div class="table_container">
-          <table class="product_table" cellspacing="0">
+          <table class="product_table" [ngClass]="{'visible':status}" cellspacing="0">
             <tr>
-              <th>Product</th>
+              <th>Name</th>
               <th>Price</th>
               <th>Raiting</th>
             </tr>
-            <tr>
-              <td>Pizza-Star</td>
-              <td>77.90</td>
-              <td>4.5</td>
-              <td><a class="button warning" href="#">Edit</a></td>
+            <tr *ngFor="let prod of products">
+              <td>{{prod.name}}</td>
+              <td>{{prod.price}}</td>
+              <td>5.3</td>
+              <td><a class="button warning" [routerLink]="['/product',prod.id]">Edit</a></td>
               <td><a class="button danger" href="#">Delete</a></td>
             </tr>
-            <tr>
-              <td>Pizza-Star</td>
-              <td>77.90</td>
-              <td>4.5</td>
-              <td><a class="button warning" href="#">Edit</a></td>
-              <td><a class="button danger" href="#">Delete</a></td>
-            </tr>
-            <tr>
-              <td>Pizza-Star</td>
-              <td>77.90</td>
-              <td>4.5</td>
-              <td><a class="button warning" href="#">Edit</a></td>
-              <td><a class="button danger" href="#">Delete</a></td>
-            </tr>
-            <tr>
-              <td>Pizza-Star</td>
-              <td>77.90</td>
-              <td>4.5</td>
-              <td><a class="button warning" href="#">Edit</a></td>
-              <td><a class="button danger" href="#">Delete</a></td>
-            </tr>
-            <tr>
-              <td>Pizza-Star</td>
-              <td>77.90</td>
-              <td>4.5</td>
-              <td><a class="button warning" href="#">Edit</a></td>
-              <td><a class="button danger" href="#">Delete</a></td>
-            </tr>
-            <tr>
-              <td>Pizza-StaS</td>
-              <td>77.90</td>
-              <td>4.5</td>
-              <td><a class="button warning" href="#">Edit</a></td>
-              <td><a class="button danger" href="#">Delete</a></td>
-            </tr>
+          
           </table>
-          <table *ngIf="restaurants" class="rest_table" cellspacing="0">
+          <table *ngIf="restaurants" class="rest_table" [ngClass]="{'unvisible':status}" cellspacing="0">
             <tr>
               <th>Name</th>
               <th>Raiting</th>
@@ -81,7 +51,7 @@
               <td>{{rest.votes}}</td>
               <td><a class="button warning" [routerLink]="['/restaurant',rest.id]">Edit</a></td>
               <td><a class="button danger" href="#">Delete</a></td>
-              <td><button class="button info">Products</button></td>
+              <td><button class="button info" (click)="loadProducts(rest.id)">Products</button></td>
             </tr>
           </table>
         </div>
