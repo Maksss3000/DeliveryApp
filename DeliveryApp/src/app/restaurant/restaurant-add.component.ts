@@ -9,6 +9,7 @@ import { EmptyStringValidator } from '../validators/emptyStringValidator';
 import { Restaurant} from '../restaurants/restaurant';
 import { NgxImageCompressService } from 'ngx-image-compress';
 import { BaseFormComponent } from '../base-form.component';
+import { RestaurantService } from './restaurant.service';
 
 @Component({
   selector: 'app-restaurant-add',
@@ -32,7 +33,10 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
   ownerName?: string|null;
 
   constructor(private http: HttpClient,
-    private activatedRoute: ActivatedRoute, imageCompress: NgxImageCompressService,private router:Router) {
+              private activatedRoute: ActivatedRoute,
+              imageCompress: NgxImageCompressService,
+              private router: Router,
+              private restServ: RestaurantService) {
     super(imageCompress);
   }
 
@@ -60,7 +64,7 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
     //Edit Mode
     if (this.id) {
       //Getting specific Restaurant
-      this.http.get<Restaurant>(environment.baseUrl + '/Delivery/restaurant/'+this.id).subscribe(result => {
+      this.restServ.getRestaurant(this.id).subscribe(result => {
         this.restaurant = result;
 
         if (this.restaurant) {
@@ -107,9 +111,9 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
 
     //Edit Restaurants
     if (this.id) {
-      var params = new HttpParams().set("id", this.id).set("securityId",this.id);
-      this.http.put<Restaurant>(environment.baseUrl + '/Delivery/editRest', formData, { params }).subscribe(result => {
-
+      var params = new HttpParams().set("id", this.id).set("securityId", this.id);
+      
+      this.restServ.editRestaurant(formData, params).subscribe(result => {
         this.redirect("panel");
       }, error => {
         if (error.status == 403) {
@@ -123,10 +127,9 @@ export class RestaurantAddComponent extends BaseFormComponent implements OnInit 
 
     //Add Restaurant
     else {
-      this.http.post<Restaurant>(environment.baseUrl + '/Delivery/addRest', formData).subscribe(result => {
+      this.restServ.addRestaurant(formData).subscribe(result => {
         this.redirect("panel");
       }, error => console.error(error));
-      
     }
    
   }
