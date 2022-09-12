@@ -40,7 +40,6 @@ export class ProductsComponent implements OnInit {
         })
         this.restName = result[0].restaurantName;
         this.products = result;
-        console.log("Res", result);
       }
     }, error => console.error(error));
 

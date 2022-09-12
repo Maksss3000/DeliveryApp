@@ -34,7 +34,7 @@
               <td>{{prod.price}}</td>
               <td>5.3</td>
               <td><a class="button warning" [routerLink]="['/product',prod.id]">Edit</a></td>
-              <td><a class="button danger" href="#">Delete</a></td>
+              <td><button class="button danger" (click)="deleteProduct(prod.id, prod.restaurantId)">Delete</button></td>
             </tr>
           
           </table>
@@ -50,7 +50,7 @@
               <td>{{rest.raiting}}</td>
               <td>{{rest.votes}}</td>
               <td><a class="button warning" [routerLink]="['/restaurant',rest.id]">Edit</a></td>
-              <td><a class="button danger" href="#">Delete</a></td>
+              <td><button class="button danger" (click)="deleteRestaurant(rest.id)">Delete</button></td>
               <td><button class="button info" (click)="loadProducts(rest.id)">Products</button></td>
             </tr>
           </table>

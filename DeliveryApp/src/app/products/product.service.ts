@@ -29,4 +29,7 @@ export class ProductService {
     return this.http.post<Product>(environment.baseUrl + '/Delivery/addProd', formData);
   }
 
+  deleteProduct(params: HttpParams): Observable<any> {
+    return this.http.delete(environment.baseUrl + '/Delivery/deleteProd', { params });
+  }
 }

@@ -306,5 +306,38 @@ namespace DeliveryAPI.Controllers
             }
             //await _context.Restaurants.Update(restaurant);
         }
+
+
+        [HttpDelete]
+        [Route("deleteRest")]
+        [Authorize(Roles = "RegisteredUser", Policy = "MustBeRestaurantOwner")]
+        public async Task<IActionResult> DeleteRestaurantAsync(int id)
+        {
+            var restaurant = await _context.Restaurants.FindAsync(id);
+            if (restaurant != null)
+            {
+                _context.Restaurants.Remove(restaurant);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+            return NotFound();
+        }
+
+        [HttpDelete]
+        [Route("deleteProd")]
+        [Authorize(Roles = "RegisteredUser", Policy = "MustBeRestaurantOwner")]
+        public async Task<IActionResult> DeleteProductAsync(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product != null)
+            {
+                _context.Products.Remove(product);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+
+            return NotFound();
+        }
     }
+
 }

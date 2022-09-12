@@ -27,12 +27,15 @@ export class RestaurantService {
     return this.http.get<Restaurant>(environment.baseUrl + '/Delivery/restaurant/' + id);
   }
 
-  editRestaurant(formData: FormData, params: HttpParams): Observable<Restaurant>{
-    return this.http.put<Restaurant>(environment.baseUrl + '/Delivery/editRest', formData, { params });
-  }
-
   addRestaurant(formData: FormData): Observable<Restaurant> {
     return this.http.post<Restaurant>(environment.baseUrl + '/Delivery/addRest', formData);
   }
 
+  editRestaurant(formData: FormData, params: HttpParams): Observable<Restaurant>{
+    return this.http.put<Restaurant>(environment.baseUrl + '/Delivery/editRest', formData, { params });
+  }
+
+  deleteRestaurant(params: HttpParams): Observable<any>{
+    return this.http.delete(environment.baseUrl + '/Delivery/deleteRest', { params });
+  }
 }
