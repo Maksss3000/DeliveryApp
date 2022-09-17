@@ -31,17 +31,31 @@
 }
 
 .stars {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  flex-direction: row-reverse;
+
   line-height: 0;
-  display: inline-block;
+  //display: inline-block;
   list-style-type: none;
   padding-left: 0;
 }
 
 .stars li {
   display: inline-block;
-  color: orange;
   cursor: pointer;
+
+  &:hover,
+  &:hover ~ li {
+    color: orange;
+  }
 }
+
+.orange {
+  color: orange;
+}
+
 
 .no_content{
     @include title(1.5em);

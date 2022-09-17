@@ -88,6 +88,7 @@ namespace DeliveryAPI.Controllers
             return await _context.Restaurants.AsNoTracking().Where(r => r.Owner == owner).ToListAsync();
             
         }
+
         [HttpGet]
         [Route("restaurant/{id}")]
         public async Task<ActionResult<RestaurantDTO>> GetRestaurant(int id)

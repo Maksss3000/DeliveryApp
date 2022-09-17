@@ -19,7 +19,7 @@
         </div>
         <div>{{rest.name}}<span>Raiting:{{rest.raiting}}</span></div>
         <ul class="stars">
-          <li *ngFor="let item of [].constructor(rest.stars);">&#10029;</li>
+          <li *ngFor="let star of this.stars;let i = index"  [ngClass]="{'orange':rest.stars<=i+1}">&#10029;</li>
         </ul>
         <small>Votes({{rest.votes}})</small>
       </div>

@@ -17,6 +17,7 @@ export class RestaurantsComponent implements OnInit {
   public raiting: number = 0;
 
   public id?: number;
+  public stars!: number[];
 
   constructor(private http: HttpClient,
               private activatedRoute: ActivatedRoute,
@@ -24,6 +25,7 @@ export class RestaurantsComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.stars = Array(5).fill(0).map((x, i) => i);
     this.loadRestaurants();
   }
 
@@ -40,9 +42,10 @@ export class RestaurantsComponent implements OnInit {
     //Restaurant of Specific Category.
   
     this.restServ.loadRestaurants(this.id).subscribe(result => {
-        result.map(res => {
-          res.stars = Math.floor(res.raiting);
-          res.image = this.env.imgUrl + '/Restaurants/' + res.image;
+      result.map(res => {
+
+        res.stars = res.raiting != 0 ? Math.floor(res.raiting) : 50;
+        res.image = this.env.imgUrl + '/Restaurants/' + res.image;
         })
         this.restaurants = result;
       }, error => console.error(error));
